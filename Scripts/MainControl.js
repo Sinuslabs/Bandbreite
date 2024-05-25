@@ -6,6 +6,9 @@ namespace Main_Controls {
 	
 	const var Gains = [Content.getComponent("InputGain_knb"),
 	                   Content.getComponent("OutputGain_knb")];
+	 
+	 const var Container = Content.getComponent("MainPanel_Controls_Container");
+	 Container.setPaintRoutine(containerRoutine);
 	                   
 	                   
 	for (knb in MainControls) {
@@ -43,5 +46,30 @@ namespace Main_Controls {
 			
 		}
 	}
+	
+	inline function containerRoutine(g) {
+	 	 
+	 	 local a = this.getLocalBounds(Primitives.Spacings.md);
+	 	 g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
+	 	 g.drawRoundedRectangle(a, Primitives.BorderRadius.md, Primitives.BorderSize.sm);
+	 	 
+	 	 local text_a = [
+	 	 	40,
+	 	 	34,
+	 	 	80,
+	 	 	19
+	 	 ];
+	 	 
+	 	 g.rotate(Math.toRadians(90), [text_a[2] / 2, text_a[3] / 2]);
+	 	 
+	 	 g.setColour(Theme.THEME.Colors.UI.background);
+	 	 g.fillRect(text_a);
+	 	 
+ 	 	 g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
+	 	 g.setFont(Theme.SemiBold, 16);
+	 	 g.drawAlignedText('BREITBAND', text_a, 'centred');
+
+	 	 
+	 }
 	
 }
