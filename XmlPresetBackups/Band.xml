@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Processor Type="SynthChain" ID="Band" Bypassed="0" Gain="1.0" Balance="0.0"
+           VoiceLimit="64.0" KillFadeTime="20.0" IconColour="0" packageName=""
+           BuildVersion="650">
+  <ChildProcessors>
+    <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
+          <ChildProcessors/>
+          <Content>
+            <Control type="ScriptSlider" id="Tape_Fatter_knb" value="0.09000000357627869"/>
+            <Control type="ScriptSlider" id="Tape_Louder_knb" value="0.02999999932944775"/>
+            <Control type="ScriptSlider" id="Tape_Softer_knb" value="0.1299999952316284"/>
+            <Control type="ScriptSlider" id="Tape_Flutter_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Dust_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Pocky_Brightness_Mid_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Pocky_Punch_Mid_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Pocky_Volume_Mid_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Pocky_Volume_Side_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Pocky_Brightness_Side_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Pocky_Punch_Side_knb" value="0.0"/>
+            <Control type="ScriptButton" id="Textures_Dust_btn" value="0"/>
+            <Control type="ScriptButton" id="Textures_Pocky_btn" value="1.0"/>
+            <Control type="ScriptButton" id="Get_more_btn" value="0.0"/>
+            <Control type="ScriptButton" id="Sinuslabs_Logo_btn" value="0.0"/>
+            <Control type="ScriptButton" id="Youtube_btn" value="0.0"/>
+            <Control type="ScriptButton" id="Instagram_btn" value="0.0"/>
+            <Control type="ScriptButton" id="Textures_btn" value="0"/>
+            <Control type="ScriptButton" id="Theme_btn" value="0.0"/>
+            <Control type="ScriptSlider" id="InputGain_knb" value="3.33066907387547e-15"/>
+            <Control type="ScriptSlider" id="OutputGain_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Saturation_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Mix_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Texture_knb" value="0.0"/>
+          </Content>
+          <UIData Source="BandUIData"/>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="EffectChain" ID="FX" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="SimpleGain" ID="InputGain" Bypassed="0" Gain="0.0" Delay="0.0"
+                   Width="100.0" Balance="0.0" InvertPolarity="0.0">
+          <ChildProcessors>
+            <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Delay Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Width Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Pan Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+          </ChildProcessors>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="Hardcoded Master FX" ID="BandFX" Bypassed="0" Network="Band"
+                   InputGain="8.940696716308594e-7" Tube="0.0" DeFreq="0.6529999971389771"
+                   DeRez="0.2590000033378601" PockeyMix="1.0" Mode="1.0" Louder="0.02999999932944775"
+                   Softer="0.1299999952316284" Fatter="0.09000000357627869" Flutter="0.0"
+                   Output="0.5059811472892761" TapeMix="1.0" MidHiP="0.4369348287582397"
+                   SideHiP="1.0" HLimit="0.0130000002682209" VinylWear="1.0" Mix="0.0"
+                   TubeInput="0.5023078322410583" TextureMode="0.0" BrightM="1.0"
+                   PunchyM="1.0" DryWetM="0.4860000014305115" BrightS="0.2290000021457672"
+                   PunchyS="1.0" DryWetS="0.0" Dust="0.1509999930858612" Dust_DryWet="1.0"
+                   TextureMix="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="SimpleGain" ID="OutGain" Bypassed="0" Gain="0.0" Delay="0.0"
+                   Width="100.0" Balance="0.0" InvertPolarity="0.0">
+          <ChildProcessors>
+            <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Delay Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Width Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Pan Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+          </ChildProcessors>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="WaveSynth" ID="Waveform Generator1" Bypassed="0" Gain="0.25"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               OctaveTranspose1="0.0" OctaveTranspose2="0.0" Detune1="0.0" Detune2="0.0"
+               WaveForm1="3.0" WaveForm2="3.0" Pan1="0.0" Pan2="0.0" Mix="0.5"
+               EnableSecondOscillator="1.0" PulseWidth1="0.5" PulseWidth2="0.5"
+               HardSync="0.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="Arpeggiator" ID="Arpeggiator1" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="BypassButton" value="0.0"/>
+                <Control type="ScriptButton" id="ResetButton" value="0.0"/>
+                <Control type="ScriptSlider" id="NumStepSlider" value="4.0"/>
+                <Control type="ScriptSlider" id="StepReset" value="0.0"/>
+                <Control type="ScriptSlider" id="StepSkipSlider" value="1.0"/>
+                <Control type="ScriptButton" id="SortKeysButton" value="0.0"/>
+                <Control type="ScriptSlider" id="SpeedKnob" value="8.0"/>
+                <Control type="ScriptComboBox" id="SequenceComboBox" value="1.0"/>
+                <Control type="ScriptSlider" id="OctaveRange" value="0.0"/>
+                <Control type="ScriptSlider" id="Shuffle" value="0.0"/>
+                <Control type="ScriptButton" id="EnableTie" value="1.0"/>
+                <Control type="ScriptSliderPack" id="SemiToneSliderPack" value="-1.0"
+                         data="16......................."/>
+                <Control type="ScriptSliderPack" id="VelocitySliderPack" value="-1.0"
+                         data="16...f+BA..9KD..3uP..f+BA"/>
+                <Control type="ScriptSliderPack" id="LengthSliderPack" value="-1.0" data="16...fkBA..VJD..XoP..fkBA"/>
+                <Control type="ScriptComboBox" id="ChannelSelector" value="1.0"/>
+                <Control type="ScriptComboBox" id="OutputChannelSelector" value="1.0"/>
+                <Control type="ScriptComboBox" id="MPEStartChannel" value="2.0"/>
+                <Control type="ScriptComboBox" id="MPEEndChannel" value="16.0"/>
+                <Control type="ScriptButton" id="Hold" value="0.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope1" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="SimpleReverb" ID="Simple Reverb1" Bypassed="0" RoomSize="0.2899999916553497"
+                       Damping="0.6000000238418579" WetLevel="0.4199999868869781" DryLevel="0.5800000429153442"
+                       Width="0.800000011920929" FreezeMode="0.1000000014901161">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Mix Modulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Osc2 Pitch Modulation" Bypassed="0"
+                   Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+  </ChildProcessors>
+  <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+  <macro_controls>
+    <macro name="Macro 1" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 2" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 3" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 4" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 5" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 6" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 7" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 8" value="0.0" midi_cc="-1"/>
+  </macro_controls>
+  <MidiAutomation/>
+  <MPEData Enabled="0"/>
+</Processor>

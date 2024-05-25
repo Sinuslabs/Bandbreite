@@ -1,0 +1,7 @@
+Binaries/
+settings.json
+build/
+logs/
+.env
+.DS_Store
+**/.DS_Store
