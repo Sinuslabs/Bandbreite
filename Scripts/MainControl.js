@@ -1,6 +1,5 @@
 namespace Main_Controls {
 	
-	const var Controls_Container = Content.getComponent("MainPanel_Controls_Container");
 	const var MainControls = [Content.getComponent("Saturation_knb"),
 	                          Content.getComponent("Texture_knb"),
 	                          Content.getComponent("Mix_knb")];
@@ -11,6 +10,7 @@ namespace Main_Controls {
 	                   
 	for (knb in MainControls) {
 		knb.setControlCallback(onMainControl);
+		knb.setLocalLookAndFeel(Styles.LAF_Knob);
 	}
 	
 	for (knb in Gains) {

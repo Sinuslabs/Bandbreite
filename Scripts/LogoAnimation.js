@@ -8,13 +8,9 @@ namespace LogoAnimation {
 	const speed = 1;
 	const timer = 30;
 	
-	inline function init() {
-		AnimationPanel.setAnimation(animation);
-		AnimationPanel.setTimerCallback(nextFrame);
-		AnimationPanel.startTimer(30);
-	}
-	
-	init();
+	AnimationPanel.setAnimation(animation);
+	AnimationPanel.setTimerCallback(nextFrame);
+	AnimationPanel.startTimer(30);
 	
 	inline function nextFrame() {	
 		AnimationPanel.setAnimationFrame(frame);

@@ -138,9 +138,8 @@ namespace Theme {
     Engine.setGlobalFont("inter-semi");
     
     reg THEME = LIGHT_THEME;
-    
-    reg panels = [];
-    reg knobs = [];
+	const SemiBold = 'inter-semi';
+	const Regular = 'inter-reg';
     
     inline function setTheme(theme) {
 	    if (theme === 'light') {
@@ -154,6 +153,18 @@ namespace Theme {
 	    repaintAll();
     }
     
+    inline function toggleTheme(value) {
+	    if (value) {
+		    setTheme('light');
+	    } else {
+		    setTheme('dark');
+	    }
+    }
+    
+    
+    reg panels = [];
+    reg knobs = [];
+    
     inline function repaintAll() {
 	    
 	    for (pnl in panels) {
@@ -166,7 +177,7 @@ namespace Theme {
     }
     
     inline function registerThemePanel(panel) {
-	    panels.add(panel);
+	    panels.push(panel);
     }
     
     inline function registerThemeComponent(component) {

@@ -2,7 +2,9 @@ namespace Router {
 	
 	const routes = Content.getAllComponents('_Route');
 	
-	Console.print(trace(routes));
+	for (route in routes) {
+		route.setPaintRoutine(function(g) {});
+	}
 	
 	reg currentRoute = 'Tape';
 	
@@ -10,8 +12,6 @@ namespace Router {
 		
 		if (!goToRoute) return;
 		
-		Console.print(goToRoute);
-	
 		for (route in routes) {
 			if (route.getId().contains(goToRoute)) {
 				currentRoute = goToRoute;

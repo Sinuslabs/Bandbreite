@@ -7,7 +7,21 @@ namespace Textures {
 	
 	for (btn in Mode_Select) {
 		btn.setControlCallback(onModeSelect);
+		btn.setLocalLookAndFeel(Styles.LAF_displayButton);
 	}
+	
+	Dust_Control_Container.setPaintRoutine(function(g){});
+	Pocky_Control_Container.setPaintRoutine(function(g){});
+	
+	const var Dust_knb = Content.getComponent("Dust_knb");
+	
+	Dust_knb.setControlCallback(onDust);
+	Dust_knb.setLocalLookAndFeel(Styles.LAF_displayKnob);
+	
+	inline function onDust(component, value) {
+		BandFX.setAttribute(BandFX.Dust, value);
+	}
+	
 	
 	inline function onModeSelect(component, value) {
 		

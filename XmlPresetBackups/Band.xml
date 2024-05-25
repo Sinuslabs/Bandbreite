@@ -9,25 +9,24 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="Tape_Fatter_knb" value="0.09000000357627869"/>
-            <Control type="ScriptSlider" id="Tape_Louder_knb" value="0.02999999932944775"/>
-            <Control type="ScriptSlider" id="Tape_Softer_knb" value="0.1299999952316284"/>
+            <Control type="ScriptSlider" id="Tape_Fatter_knb" value="0.4799999892711639"/>
+            <Control type="ScriptSlider" id="Tape_Louder_knb" value="0.1899999976158142"/>
+            <Control type="ScriptSlider" id="Tape_Softer_knb" value="0.1000000014901161"/>
             <Control type="ScriptSlider" id="Tape_Flutter_knb" value="0.0"/>
-            <Control type="ScriptSlider" id="Dust_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Dust_knb" value="0.009999999776482582"/>
             <Control type="ScriptSlider" id="Pocky_Brightness_Mid_knb" value="0.0"/>
             <Control type="ScriptSlider" id="Pocky_Punch_Mid_knb" value="0.0"/>
             <Control type="ScriptSlider" id="Pocky_Volume_Mid_knb" value="0.0"/>
             <Control type="ScriptSlider" id="Pocky_Volume_Side_knb" value="0.0"/>
             <Control type="ScriptSlider" id="Pocky_Brightness_Side_knb" value="0.0"/>
             <Control type="ScriptSlider" id="Pocky_Punch_Side_knb" value="0.0"/>
-            <Control type="ScriptButton" id="Textures_Dust_btn" value="0"/>
-            <Control type="ScriptButton" id="Textures_Pocky_btn" value="1.0"/>
+            <Control type="ScriptButton" id="Textures_Dust_btn" value="1.0"/>
+            <Control type="ScriptButton" id="Textures_Pocky_btn" value="0"/>
             <Control type="ScriptButton" id="Get_more_btn" value="0.0"/>
             <Control type="ScriptButton" id="Sinuslabs_Logo_btn" value="0.0"/>
             <Control type="ScriptButton" id="Youtube_btn" value="0.0"/>
             <Control type="ScriptButton" id="Instagram_btn" value="0.0"/>
-            <Control type="ScriptButton" id="Textures_btn" value="0"/>
-            <Control type="ScriptButton" id="Theme_btn" value="0.0"/>
+            <Control type="ScriptButton" id="Textures_btn" value="1.0"/>
             <Control type="ScriptSlider" id="InputGain_knb" value="3.33066907387547e-15"/>
             <Control type="ScriptSlider" id="OutputGain_knb" value="0.0"/>
             <Control type="ScriptSlider" id="Saturation_knb" value="0.0"/>
@@ -66,8 +65,8 @@
         </Processor>
         <Processor Type="Hardcoded Master FX" ID="BandFX" Bypassed="0" Network="Band"
                    InputGain="8.940696716308594e-7" Tube="0.0" DeFreq="0.6529999971389771"
-                   DeRez="0.2590000033378601" PockeyMix="1.0" Mode="1.0" Louder="0.02999999932944775"
-                   Softer="0.1299999952316284" Fatter="0.09000000357627869" Flutter="0.0"
+                   DeRez="0.2590000033378601" PockeyMix="1.0" Mode="0.0" Louder="0.1899999976158142"
+                   Softer="0.1000000014901161" Fatter="0.4799999892711639" Flutter="0.0"
                    Output="0.5059811472892761" TapeMix="1.0" MidHiP="0.4369348287582397"
                    SideHiP="1.0" HLimit="0.0130000002682209" VinylWear="1.0" Mix="0.0"
                    TubeInput="0.5023078322410583" TextureMode="0.0" BrightM="1.0"

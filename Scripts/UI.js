@@ -4,8 +4,12 @@ namespace UI {
 	const var display = Content.getComponent("display");
 	const var Controls_Container = Content.getComponent("MainPanel_Controls_Container");
 	
+	Theme.registerThemePanel(background);
 	background.setPaintRoutine(function(g)
 	{
+	
+	Console.print('paint');
+
 		var a = this.getLocalBounds(0);
 		
 		g.fillAll(Theme.THEME.Colors.UI.background);

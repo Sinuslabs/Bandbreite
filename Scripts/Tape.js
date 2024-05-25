@@ -5,8 +5,12 @@ namespace Tape {
 	                      Content.getComponent("Tape_Softer_knb"),
 	                      Content.getComponent("Tape_Flutter_knb")];
 	
+	const var Tape_Control_Container = Content.getComponent("Tape_Control_Container");
+	Tape_Control_Container.setPaintRoutine(function (g) {});
+	
 	for (knb in Controls) {
 		knb.setControlCallback(onControl);
+		knb.setLocalLookAndFeel(Styles.LAF_DisplayTextKnob);
 	}
 	
 	inline function onControl(component, value) {

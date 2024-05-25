@@ -3,6 +3,8 @@ include("Core/Primitives.js");
 include("Core/ThemeData.js");
 include("Core/Theme.js");
 
+include("StyleHelpers.js");
+include("Styles.js");
 include("Animations.js");
 
 include("UI.js");
@@ -14,6 +16,7 @@ include("Router.js");
 //animations
 include("TapeAnimation.js");
 include("LogoAnimation.js");
+include("ThemeAnimation.js");
 
 include("Textures.js");
 include("Tape.js");
@@ -24,7 +27,7 @@ const var InputGain = Synth.getEffect("InputGain");
 const var BandFX = Synth.getEffect("BandFX");
 const var OutGain = Synth.getEffect("OutGain");
 
-Settings.setZoomLevel(1.3);
+Settings.setZoomLevel(1.5);
 
 
 
