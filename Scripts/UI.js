@@ -5,11 +5,8 @@ namespace UI {
 	const var Controls_Container = Content.getComponent("MainPanel_Controls_Container");
 	
 	Theme.registerThemePanel(background);
-	background.setPaintRoutine(function(g)
-	{
+	background.setPaintRoutine(function(g) {
 	
-	Console.print('paint');
-
 		var a = this.getLocalBounds(0);
 		
 		g.fillAll(Theme.THEME.Colors.UI.background);
@@ -23,9 +20,11 @@ namespace UI {
 	
 	display.setPaintRoutine(function(g)
 	{
-		var a = this.getLocalBounds(0);
+		var a = this.getLocalBounds(2);
 		g.setColour(Theme.THEME.Colors.Display.display);
 		g.fillRoundedRectangle(a, Primitives.BorderRadius.lg);
+		g.setColour(Colours.black);
+		g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.lg);
 		g.addNoise({
 				alpha: 0.04,
 				monochromatic: false,

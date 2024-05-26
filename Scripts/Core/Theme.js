@@ -137,7 +137,7 @@ namespace Theme {
     Engine.loadFontAs("{PROJECT_FOLDER}Fonts/Inter-Regular.ttf", "inter-reg");
     Engine.setGlobalFont("inter-semi");
     
-    reg THEME = LIGHT_THEME;
+    reg THEME = DARK_THEME;
 	const SemiBold = 'inter-semi';
 	const Regular = 'inter-reg';
     

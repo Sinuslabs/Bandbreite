@@ -8,8 +8,8 @@ namespace Main_Controls {
 	                   Content.getComponent("OutputGain_knb")];
 	 
 	 const var Container = Content.getComponent("MainPanel_Controls_Container");
+	 Theme.registerThemePanel(Container);               
 	 Container.setPaintRoutine(containerRoutine);
-	                   
 	                   
 	for (knb in MainControls) {
 		knb.setControlCallback(onMainControl);
@@ -18,6 +18,7 @@ namespace Main_Controls {
 	
 	for (knb in Gains) {
 		knb.setControlCallback(onGainControl);
+		knb.setLocalLookAndFeel(VuMeterSlider.LAF_VU_Slider);
 	}
 	
 	inline function onMainControl(component, value) {

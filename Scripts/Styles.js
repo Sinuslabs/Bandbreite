@@ -1,7 +1,31 @@
 namespace Styles {
 	
-	const var LAF_DisplayTextKnob = Content.createLocalLookAndFeel();
+
+	const LAF_displayIconButton = Content.createLocalLookAndFeel();
+	LAF_displayIconButton.registerFunction("drawToggleButton", displayIconButtonLAF);
+	inline function displayIconButtonLAF(g, obj) {
+		local a = obj.area;
+		local iconArea = StyleHelpers.addPadding(a, 0);
+		local SIZE = 15;
+		
+		local width = a[2];
+		local height = a[3];
+		
+		iconArea = StyleHelpers.withSizeKeepingCentre(a, 15, 15);
+		g.setColour(Theme.THEME.Colors.Display.on_display_var);
+		
+		obj.value && g.setColour(Theme.THEME.Colors.Display.on_display);
+		
+		if (obj.text.contains('$outline')) {
+			obj.text = obj.text.replace('$outline', '');
+			g.drawPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE], 0.5);								
+		} else {
+			g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE]);	
+		}
+	}
+
 	
+	const var LAF_DisplayTextKnob = Content.createLocalLookAndFeel();	
 	LAF_DisplayTextKnob.registerFunction('drawRotarySlider', DisplayTextKnob_LAF);
 	
 	inline function DisplayTextKnob_LAF(g, obj) {
@@ -14,7 +38,7 @@ namespace Styles {
 		}
 		
 		g.setFont(Theme.SemiBold, 18);
-		g.drawAlignedText(obj.valueSuffixString, a, 'centredTop');
+		g.drawAlignedText(obj.valueAsText, a, 'centredTop');
 		g.setFont(Theme.Regular, 14);
 		g.drawAlignedText(obj.text, a, 'centredBottom');
 	}
@@ -61,7 +85,7 @@ namespace Styles {
 		local text = obj.text;
 		
 		// special padded area
-		local iconArea = [
+		local knobArea = [
 			PADDING,
 			PADDING,
 			a[2] - PADDING * 2,
@@ -77,25 +101,25 @@ namespace Styles {
 		}
 		
 		drawArc(g, a[2], start, end);
-		drawDisplayKnobLabel(g, text, a, iconArea);
-		drawDisplayKnob(g, obj.valueNormalized, iconArea);
+		drawDisplayKnobLabel(g, text, a, knobArea);
+		drawDisplayKnob(g, obj.valueNormalized, knobArea);
 	};
 	
-	inline function drawDisplayKnob(g, value, iconArea)
+	inline function drawDisplayKnob(g, value, knobArea)
 	{
 		local INDICATOR_THICKNESS = 2;
 		local INDICATOR_LENGTH = 25;
 		local INDICATOR_GAP = 0;
-		local width = iconArea[2] + iconArea[0] * 2;
+		local width = knobArea[2] + knobArea[0] * 2;
 	
 		local start = 2.5;
 		local end = start * 2 * value - start;
 		
-		g.drawEllipse(iconArea, 1);
+		g.drawEllipse(knobArea, 1);
 		g.rotate(end, [width / 2 , width / 2 ]);
 		g.fillRoundedRectangle([
 			width / 2 - (INDICATOR_THICKNESS / 2),
-			iconArea[0] + INDICATOR_GAP,
+			knobArea[0] + INDICATOR_GAP,
 			INDICATOR_THICKNESS,
 		 	(width / 100 ) * INDICATOR_LENGTH],
 		 	1
@@ -105,7 +129,48 @@ namespace Styles {
 	inline function drawDisplayKnobLabel(g, label, a, padded_a)	{
 		g.setFont(Theme.Regular, 12);			
 		g.drawAlignedText(label, [a[0], padded_a[1] + padded_a[3] * 0.95, a[2], padded_a[3]], 'centred');
-	}	
+	}
+	
+	// DISPLAY SLIDER
+	const LAF_displaySlider = Content.createLocalLookAndFeel();
+	LAF_displaySlider.registerFunction('drawRotarySlider', displaySlidersLAF);
+	inline function displaySlidersLAF(g, obj) {
+		local a = obj.area;
+		
+		local DOT_SIZE = 9;
+		local thickness = 1;
+		
+		local SLIDER_HEIGHT = 0.8;
+		local LINE_THICKNESS = 2;
+		local DOT_MAX_TRAVEL = 0.76;
+		local DOT_RADIUS = 5;
+		local LABEL_BOTTOM_PADDING = 14;
+		
+		local value = obj.valueNormalized;
+		
+		local x = a[2] / 2 - DOT_SIZE / 2 - Primitives.Spacings.md;
+		local y = a[3] * DOT_MAX_TRAVEL * (1 - value);
+		local tri_area = [x, y, DOT_SIZE, DOT_SIZE];
+		
+		local bottomPadding_a = [a[0], a[1], a[2], a[3] - LABEL_BOTTOM_PADDING];
+		
+		obj.enabled ?
+			g.setColour(Theme.THEME.Colors.Display.on_display)
+			: Theme.THEME.Colors.Display.on_display_disabled;
+		
+		g.fillTriangle(tri_area, Math.toRadians(90));
+		
+		g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
+		
+		if (obj.hover) {
+			g.setFont(Theme.Regular, 12);
+			g.drawAlignedText(obj.valueAsText.replace(' dB', ''), bottomPadding_a, 'centredBottom');
+			g.setFont(Theme.Regular, 14);
+			g.drawAlignedText(obj.suffix, a, 'centredBottom');
+		}
+		
+		g.drawLine(a[2] / 2, a[2] / 2, 0, a[3] * SLIDER_HEIGHT, LINE_THICKNESS);
+	}
 	
 	// DEFAULT KNOB
 	const LAF_Knob = Content.createLocalLookAndFeel();
@@ -181,7 +246,7 @@ namespace Styles {
 			}
 			
 			if (obj.hover) {
-				text = obj.valueSuffixString;
+				text = obj.valueAsText;
 			}
 			
 			g.setColour(BODY);
