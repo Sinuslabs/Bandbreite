@@ -64,6 +64,20 @@ namespace Styles {
 		local a = obj.area;
 		a = StyleHelpers.addPadding(a, 3);
 		
+		local upper_a = [
+			a[0],
+			a[1],
+			a[2],
+			a[3] * 0.6
+		];
+		
+		local lower_a = [
+			a[0],
+			a[3] * 0.6,
+			a[2],
+			a[3] * 0.4
+		];
+		
 		local valueText = obj.valueAsText;		
 		local textA = StyleHelpers.addPadding(a, Primitives.Spacings.md);
 		
@@ -83,9 +97,9 @@ namespace Styles {
 		}
 		
 		g.setFont(Theme.SemiBold, 23);
-		g.drawAlignedText(valueText, textA, 'centredTop');
+		g.drawAlignedText(valueText, upper_a, 'centred');
 		g.setFont(Theme.Regular, 16);
-		g.drawAlignedText(obj.text, textA, 'centredBottom');
+		g.drawAlignedText(obj.text, lower_a, 'centred');
 	}
 	
 	const LAF_displayButton = Content.createLocalLookAndFeel();
