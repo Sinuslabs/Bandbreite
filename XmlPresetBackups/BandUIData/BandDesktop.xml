@@ -1,183 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ContentProperties DeviceType="Desktop">
-  <Component type="ScriptPanel" id="background" x="0.0" y="0.0" width="320.0"
-             height="350.0">
-    <Component type="ScriptPanel" id="display" x="9.0" y="10.0" parentComponent="background"
-               width="300.0" height="220.0">
-      <Component type="ScriptPanel" id="Tape_Route" x="5.0" y="5.0" parentComponent="display"
-                 width="290.0" height="210.0">
-        <Component type="ScriptPanel" id="Tape_Control_Container" x="26.0" y="155.0"
-                   parentComponent="Tape_Route" width="245.0" height="55.0">
-          <Component type="ScriptSlider" id="Tape_Fatter_knb" x="5.0" y="5.0" width="50.0"
-                     height="45.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
-                     suffix="%" middlePosition="0.5" text="FATTER"/>
-          <Component type="ScriptSlider" id="Tape_Louder_knb" x="60.0" y="5.0" width="55.0"
-                     height="45.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
-                     suffix="%" middlePosition="0.5" text="LOUDER"/>
-          <Component type="ScriptSlider" id="Tape_Softer_knb" x="120.0" y="5.0" width="60.0"
-                     height="45.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
-                     suffix="%" middlePosition="0.5" text="SOFTER"/>
-          <Component type="ScriptSlider" id="Tape_Flutter_knb" x="185.0" y="5.0" width="55.0"
-                     height="45.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
-                     suffix="%" middlePosition="0.5" text="FLUTTER"/>
+  <Component type="ScriptPanel" id="background" x="0.0" y="0.0" width="480"
+             height="540">
+    <Component type="ScriptPanel" id="display" x="15.0" y="15.0" parentComponent="background"
+               width="450.0" height="330.0">
+      <Component type="ScriptPanel" id="Tape_Route" x="7.5" y="7.5" parentComponent="display"
+                 width="435.0" height="315.0" visible="0">
+        <Component type="ScriptPanel" id="Tape_Control_Container" x="33.0" y="230.0"
+                   parentComponent="Tape_Route" width="360" height="70">
+          <Component type="ScriptSlider" id="Tape_Slam_knb" x="10.0" y="10.0" width="70.0"
+                     height="50.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.5" text="Slam" defaultValue="0.2300000041723251"/>
+          <Component type="ScriptSlider" id="Tape_Low_knb" x="220.0" y="10.0" width="70.0"
+                     height="50.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.0" text="Low" defaultValue="0.5"
+                     min="-0.5" max="0.5"/>
+          <Component type="ScriptSlider" id="Tape_High_knb" x="290.0" y="10.0" width="70.0"
+                     height="50.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.5" text="High" defaultValue="0.5"/>
+          <Component type="ScriptSlider" id="Tape_Flutter_knb" x="80.0" y="10.0" width="70.0"
+                     height="50.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.5" text="Flutter" defaultValue="0.2000000029802322"/>
+          <Component type="ScriptSlider" id="Tape_Sweeten_knb" x="150.0" y="10.0"
+                     width="70.0" height="50.0" parentComponent="Tape_Control_Container"
+                     mode="NormalizedPercentage" suffix="%" middlePosition="0.5" text="Sweeten"
+                     defaultValue="0.1000000014901161"/>
         </Component>
-        <Component type="ScriptPanel" id="TapeAnimation" x="61.0" y="45.0" parentComponent="Tape_Route"
-                   width="165.0" height="95.0"/>
+        <Component type="ScriptPanel" id="TapeAnimation_wrapper_pnl" x="93.0" y="73.0"
+                   width="245.0" height="140.0" parentComponent="Tape_Route" locked="1"/>
+        <Component type="ScriptPanel" id="TapeAnimation" x="93.0" y="73.0" parentComponent="Tape_Route"
+                   width="247.5" height="142.5" locked="1"/>
       </Component>
-      <Component type="ScriptPanel" id="Textures_Route" x="5.0" y="5.0" parentComponent="display"
-                 width="290.0" height="210.0" visible="0">
-        <Component type="ScriptPanel" id="Dust_Control_Container" x="26.0" y="50.0"
-                   width="240.0" height="135.0" parentComponent="Textures_Route"
+      <Component type="ScriptPanel" id="Textures_Route" x="7.5" y="7.5" parentComponent="display"
+                 width="435.0" height="315.0">
+        <Component type="ScriptPanel" id="Dust_Control_Container" x="39.0" y="75.0"
+                   width="360.0" height="202.5" parentComponent="Textures_Route"
                    visible="0">
-          <Component type="ScriptSlider" id="Dust_knb" x="25.0" y="20.0" parentComponent="Dust_Control_Container"
-                     width="65.0" height="100.0" text="DUST"/>
-          <Component type="ScriptPanel" id="Dust_Animation_pnl" x="130.0" y="15.0"
-                     parentComponent="Dust_Control_Container" width="100.0" height="105.0"/>
+          <Component type="ScriptSlider" id="Dust_knb" x="239.5" y="113.5" parentComponent="Dust_Control_Container"
+                     width="75" height="65" text="Dust" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.5"/>
+          <Component type="ScriptSlider" id="Wear_knb" x="239.0" y="33.0" parentComponent="Dust_Control_Container"
+                     width="75" height="65" text="Wear" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.5"/>
         </Component>
-        <Component type="ScriptPanel" id="Pocky_Control_Container" x="26.0" y="45.0"
-                   width="240.0" height="160.0" parentComponent="Textures_Route">
-          <Component type="ScriptSlider" id="Pocky_Volume_Mid_knb" x="84.0" y="30.0"
-                     parentComponent="Pocky_Control_Container" width="35.0" height="85.0"/>
-          <Component type="ScriptSlider" id="Pocky_Volume_Side_knb" x="130.0" y="30.0"
-                     parentComponent="Pocky_Control_Container" width="35.0" height="85.0"/>
-          <Component type="ScriptPanel" id="Pocky_Brightness_Mid_Container" x="5.0"
-                     y="5.0" parentComponent="Pocky_Control_Container" width="65.0"
-                     height="70.0">
-            <Component type="ScriptPanel" id="Pocky_Brightness_Mid_Lottie_pnl" x="0.0"
-                       y="0.0" width="65.0" height="40.0" parentComponent="Pocky_Brightness_Mid_Container"/>
-            <Component type="ScriptSlider" id="Pocky_Brightness_Mid_knb" x="0.0" y="0.0"
-                       parentComponent="Pocky_Brightness_Mid_Container" width="65.0"
-                       height="70.0" text="Brightness"/>
-          </Component>
-          <Component type="ScriptPanel" id="Pocky_Punch_Mid_Container" x="5.0" y="85.0"
-                     parentComponent="Pocky_Control_Container" width="65.0" height="70.0">
-            <Component type="ScriptPanel" id="Pocky_Punch_Mid_Lottie_pnl" x="0.0" y="0.0"
-                       width="65.0" height="40.0" parentComponent="Pocky_Punch_Mid_Container"/>
-            <Component type="ScriptSlider" id="Pocky_Punch_Mid_knb" x="0.0" y="0.0"
-                       parentComponent="Pocky_Punch_Mid_Container" width="65.0" height="70.0"
-                       text="Punch" stepSize="0.009999999776482582"/>
-          </Component>
-          <Component type="ScriptPanel" id="Pocky_Punch_Side_Container" x="170.0"
-                     y="75.0" parentComponent="Pocky_Control_Container" width="65.0"
-                     height="70.0">
-            <Component type="ScriptPanel" id="Pocky_Punch_Side_Lottie_pnl" x="0.0" y="0.0"
-                       width="65.0" height="40.0" parentComponent="Pocky_Punch_Side_Container"/>
-            <Component type="ScriptSlider" id="Pocky_Punch_Side_knb" x="0.0" y="0.0"
-                       parentComponent="Pocky_Punch_Side_Container" width="65.0" height="70.0"
-                       text="Punch" stepSize="0.009999999776482582"/>
-          </Component>
-          <Component type="ScriptPanel" id="Pocky_Brightness_Side_Container" x="170.0"
-                     y="5.0" parentComponent="Pocky_Control_Container" width="65.0"
-                     height="70.0">
-            <Component type="ScriptPanel" id="Pocky_Brightness_Side_Lottie_pnl" x="0.0"
-                       y="0.0" width="65.0" height="40.0" parentComponent="Pocky_Brightness_Side_Container"/>
-            <Component type="ScriptSlider" id="Pocky_Brightness_Side_knb" x="0.0" y="0.0"
-                       parentComponent="Pocky_Brightness_Side_Container" width="65.0"
-                       height="70.0" text="Brightness" stepSize="0.009999999776482582"/>
-          </Component>
+        <Component type="ScriptPanel" id="Pocky_Control_Container" x="39.0" y="67.5"
+                   width="360.0" height="240.0" parentComponent="Textures_Route">
+          <Component type="ScriptSlider" id="Rez_knb" x="209.0" y="131.0" width="120.0"
+                     height="60.0" parentComponent="Pocky_Control_Container" text="Rez"/>
+          <Component type="ScriptSlider" id="Freq_knb" x="209.0" y="41.0" width="120.0"
+                     height="60.0" parentComponent="Pocky_Control_Container" text="Freq"/>
         </Component>
-        <Component type="ScriptButton" id="Textures_Dust_btn" x="46.0" y="10.0"
-                   width="55.0" height="25.0" radioGroup="2.0" text="Dust" parentComponent="Textures_Route"/>
-        <Component type="ScriptButton" id="Textures_Pocky_btn" x="106.0" y="10.0"
-                   width="60.0" height="25.0" radioGroup="2.0" text="Pocky" parentComponent="Textures_Route"/>
+        <Component type="ScriptButton" id="Textures_Dust_btn" x="253.0" y="53.0"
+                   width="52.5" height="37.5" radioGroup="2.0" text="Grime" parentComponent="Textures_Route"/>
+        <Component type="ScriptButton" id="Textures_Pocky_btn" x="313.0" y="53.0"
+                   width="67.5" height="37.5" radioGroup="2.0" text="Pocky" parentComponent="Textures_Route"/>
       </Component>
-      <Component type="ScriptPanel" id="About_Route" x="5.0" y="5.0" parentComponent="display"
-                 width="290.0" height="210.0" visible="0">
-        <Component type="ScriptLabel" id="Product_Title_lbl" x="76.0" y="35.0" parentComponent="About_Route"
-                   text="BREITBAND" fontName="inter-semi" fontSize="24.0" editable="0"
-                   width="128" height="28"/>
-        <Component type="ScriptLabel" id="Product_Description_lbl" x="76.0" y="60.0"
-                   parentComponent="About_Route" text="FREE TAPE VST" width="130"
-                   height="20" editable="0" fontName="inter-reg" fontSize="14.0"/>
-        <Component type="ScriptButton" id="Get_more_btn" x="76.0" y="100.0" parentComponent="About_Route"
-                   text="Get more like this" width="130" height="35" saveInPreset="0"
+      <Component type="ScriptPanel" id="About_Route" x="7.5" y="7.5" parentComponent="display"
+                 width="435.0" height="315.0" visible="0">
+        <Component type="ScriptLabel" id="Product_Title_lbl" x="114.0" y="52.5"
+                   parentComponent="About_Route" text="BREITBAND" fontName="inter-semi"
+                   fontSize="24.0" editable="0" width="192.0" height="42.0"/>
+        <Component type="ScriptLabel" id="Product_Description_lbl" x="114.0" y="90.0"
+                   parentComponent="About_Route" text="FREE TAPE VST" width="195.0"
+                   height="30.0" editable="0" fontName="inter-reg" fontSize="14.0"/>
+        <Component type="ScriptButton" id="Get_more_btn" x="114.0" y="135.0" parentComponent="About_Route"
+                   text="Get more like this" width="195.0" height="52.5" saveInPreset="0"
                    enableMidiLearn="0" isMomentary="1"/>
-        <Component type="ScriptButton" id="Sinuslabs_Logo_btn" x="76.0" y="170.0"
-                   parentComponent="About_Route" text="Sinuslabs" width="130" height="25"
-                   saveInPreset="0" enableMidiLearn="0" isMomentary="1"/>
-        <Component type="ScriptButton" id="Youtube_btn" x="221.0" y="175.0" parentComponent="About_Route"
-                   width="25.0" height="25.0" text="Youtube" saveInPreset="0" enableMidiLearn="0"
+        <Component type="ScriptButton" id="Sinuslabs_Logo_btn" x="226.5" y="277.5"
+                   parentComponent="About_Route" text="Sinuslabs" width="204.0"
+                   height="27.0" saveInPreset="0" enableMidiLearn="0" isMomentary="1"/>
+        <Component type="ScriptButton" id="Youtube_btn" x="166.5" y="195.0" parentComponent="About_Route"
+                   width="37.5" height="37.5" text="youtube" saveInPreset="0" enableMidiLearn="0"
                    isMomentary="1"/>
-        <Component type="ScriptButton" id="Instagram_btn" x="256.0" y="175.0" parentComponent="About_Route"
-                   width="25.0" height="25.0" text="Instagram" saveInPreset="0"
+        <Component type="ScriptButton" id="Instagram_btn" x="219.0" y="195.0" parentComponent="About_Route"
+                   width="37.5" height="37.5" text="insta$outline" saveInPreset="0"
                    enableMidiLearn="0" isMomentary="1"/>
-        <Component type="ScriptLabel" id="berlin_label" x="76.0" y="150.0" parentComponent="About_Route"
-                   text="FROM BERLIN WITH &lt;3" width="130" height="15" fontName="inter-reg"
-                   fontSize="10.0"/>
+        <Component type="ScriptLabel" id="berlin_label" x="9.0" y="277.5" parentComponent="About_Route"
+                   text="FROM BERLIN WITH &lt;3" width="165.0" height="22.5" fontName="inter-reg"
+                   fontSize="10.0" editable="0"/>
       </Component>
     </Component>
-    <Component type="ScriptPanel" id="Product_Logo_pnl" x="20.0" y="20.0" parentComponent="background"
-               width="25.0" height="18.0"/>
-    <Component type="ScriptPanel" id="Product_Logo_pnlbtn" x="15.0" y="15.0"
-               parentComponent="background" width="40.0" height="30.0" allowCallbacks="Clicks &amp; Hover"/>
-    <Component type="ScriptButton" id="Textures_btn" x="190.0" y="20.0" parentComponent="background"
-               width="70.0" height="20.0"/>
-    <Component type="ScriptPanel" id="InputGain_VU_pnl" x="20.0" y="50.0" width="25.0"
-               height="120.0" bgColour="16777215" itemColour="4934475" itemColour2="4934475"
+    <Component type="ScriptButton" id="extra_click_area_btn" x="85.0" y="20.0"
+               parentComponent="background" width="295" height="45" enableMidiLearn="0"/>
+    <Component type="ScriptPanel" id="Product_Logo_pnl" x="30.0" y="30.0" parentComponent="background"
+               width="37.5" height="27.0"/>
+    <Component type="ScriptButton" id="Product_Logo_btn" x="25.0" y="20.0" parentComponent="background"
+               width="50.0" height="45.0" radioGroup="1.0"/>
+    <Component type="ScriptButton" id="Textures_btn" x="240.0" y="30.5" parentComponent="background"
+               width="100" height="30" text="Textures" radioGroup="1.0"/>
+    <Component type="ScriptPanel" id="InputGain_VU_pnl" x="30.0" y="90.0" width="36.0"
+               height="210.0" bgColour="16777215" itemColour="4934475" itemColour2="4934475"
                textColour="16777215" borderSize="0.0" borderRadius="0.0" parentComponent="background">
       <Component type="ScriptSlider" id="InputGain_knb" x="0.0" y="0.0" parentComponent="InputGain_VU_pnl"
-                 width="25.0" height="120.0" useUndoManager="1" mode="Decibel"
+                 width="36.0" height="210.0" useUndoManager="1" mode="Decibel"
                  min="-60.0" max="12.0" stepSize="0.1000000014901161" middlePosition="-18.0"/>
-      <Component type="ScriptSlider" id="InputPeakMeterFillL" x="12.0" y="0.0"
+      <Component type="ScriptSlider" id="InputPeakMeterFillL" x="15.0" y="0.0"
                  middlePosition="-18.0" stepSize="0.009999999776482582" min="-60.0"
-                 max="12.0" text="PeakMeterVertFill" enabled="0" width="4.0" height="120.0"
+                 max="12.0" text="PeakMeterVertFill" enabled="0" width="6.0" height="180.0"
                  bgColour="1513239" itemColour="1176553415" itemColour2="1676492"
                  textColour="4280338375" parentComponent="InputGain_VU_pnl" saveInPreset="0"/>
-      <Component type="ScriptSlider" id="InputPeakMeterPointL" x="12.0" y="0.0"
+      <Component type="ScriptSlider" id="InputPeakMeterPointL" x="15.0" y="0.0"
                  middlePosition="-18.0" stepSize="0.009999999776482582" min="-60.0"
-                 max="12.0" text="PeakMeterVertPointer" enabled="0" width="4.0"
-                 height="120.0" bgColour="2148295" itemColour="1176553415" itemColour2="1676492"
+                 max="12.0" text="PeakMeterVertPointer" enabled="0" width="6.0"
+                 height="180.0" bgColour="2148295" itemColour="1176553415" itemColour2="1676492"
                  textColour="4280338375" parentComponent="InputGain_VU_pnl" saveInPreset="0"/>
     </Component>
-    <Component type="ScriptPanel" id="OutputGain_VU_pnl" x="275.0" y="50.0"
-               width="25.0" height="135.0" bgColour="16777215" itemColour="4934475"
+    <Component type="ScriptPanel" id="OutputGain_VU_pnl" x="412.0" y="90.0"
+               width="36.0" height="210.0" bgColour="16777215" itemColour="4934475"
                itemColour2="4934475" textColour="16777215" borderSize="0.0"
                borderRadius="0.0" parentComponent="background">
       <Component type="ScriptSlider" id="OutputGain_knb" x="0.0" y="0.0" parentComponent="OutputGain_VU_pnl"
-                 width="25.0" height="120.0" mode="Decibel" min="-60.0" max="12.0"
+                 width="36.0" height="210.0" mode="Decibel" min="-60.0" max="12.0"
                  stepSize="0.1000000014901161" suffix=" dB" middlePosition="-18.0"/>
-      <Component type="ScriptSlider" id="OutputPeakMeterFillL" x="12.0" y="0.0"
+      <Component type="ScriptSlider" id="OutputPeakMeterFillL" x="15.0" y="0.0"
                  middlePosition="-18.0" stepSize="0.009999999776482582" min="-60.0"
-                 max="12.0" text="PeakMeterVertFill" enabled="0" width="4.0" height="120.0"
+                 max="12.0" text="PeakMeterVertFill" enabled="0" width="6.0" height="180.0"
                  bgColour="1513239" itemColour="1176553415" itemColour2="1676492"
-                 textColour="4280338375" parentComponent="OutPutGain_VU_pnl" saveInPreset="0"
-                 style="Knob" suffix="" filmstripImage="Use default skin"/>
-      <Component type="ScriptSlider" id="OutputPeakMeterPointL" x="12.0" y="0.0"
+                 textColour="4280338375" parentComponent="OutputGain_VU_pnl" saveInPreset="0"/>
+      <Component type="ScriptSlider" id="OutputPeakMeterPointL" x="15.0" y="0.0"
                  middlePosition="-18.0" stepSize="0.009999999776482582" min="-60.0"
-                 max="12.0" text="PeakMeterVertPointer" enabled="0" width="4.0"
-                 height="120.0" bgColour="2148295" itemColour="1176553415" itemColour2="1676492"
-                 textColour="4280338375" parentComponent="OutPutGain_VU_pnl" saveInPreset="0"
-                 style="Knob" suffix="" filmstripImage="Use default skin"/>
+                 max="12.0" text="PeakMeterVertPointer" enabled="0" width="6.0"
+                 height="180.0" bgColour="2148295" itemColour="1176553415" itemColour2="1676492"
+                 textColour="4280338375" parentComponent="OutputGain_VU_pnl" saveInPreset="0"/>
     </Component>
-    <Component type="ScriptPanel" id="MainPanel_Controls_Container" x="10.0"
-               y="235.0" parentComponent="background" width="300" height="110">
-      <Component type="ScriptSlider" id="Saturation_knb" x="45.0" y="15.0" width="60.0"
-                 height="85.0" parentComponent="MainPanel_Controls_Container"
-                 text="Tube" mode="NormalizedPercentage" suffix="%" middlePosition="0.5"/>
-      <Component type="ScriptSlider" id="Mix_knb" x="205.0" y="15.0" width="60.0"
-                 height="85.0" parentComponent="MainPanel_Controls_Container"
-                 mode="NormalizedPercentage" suffix="%" middlePosition="0.5" text="Mix"/>
-      <Component type="ScriptSlider" id="Texture_knb" x="125.0" y="15.0" width="60.0"
-                 height="85.0" parentComponent="MainPanel_Controls_Container"
-                 text="Texture" mode="NormalizedPercentage" suffix="%" middlePosition="0.5"/>
+    <Component type="ScriptPanel" id="MainPanel_Controls_Container" x="15.0"
+               y="360.0" parentComponent="background" width="455.0" height="165.0">
+      <Component type="ScriptSlider" id="Saturation_knb" x="52.5" y="25.0" width="90.0"
+                 height="120.0" parentComponent="MainPanel_Controls_Container"
+                 text="Tube" mode="NormalizedPercentage" suffix="%" middlePosition="0.5"
+                 defaultValue="0.5" mouseSensitivity="1.799999952316284"/>
+      <Component type="ScriptSlider" id="Tape_knb" x="180.0" y="25.0" width="90.0"
+                 height="120.0" parentComponent="MainPanel_Controls_Container"
+                 mode="NormalizedPercentage" suffix="%" middlePosition="0.5" text="Tape"
+                 defaultValue="0.5" mouseSensitivity="1.799999952316284"/>
+      <Component type="ScriptSlider" id="Texture_knb" x="300.0" y="25.0" width="90.0"
+                 height="120.0" parentComponent="MainPanel_Controls_Container"
+                 text="Texture" mode="NormalizedPercentage" suffix="%" middlePosition="0.5"
+                 defaultValue="0.5" mouseSensitivity="1.799999952316284"/>
     </Component>
-    <Component type="ScriptPanel" id="ThemeSpinner_pnl" x="275.0" y="20.0" width="15.0"
-               height="15.0" parentComponent="background"/>
-    <Component type="ScriptPanel" id="ThemeSpinner_pnlbtn" x="270.0" y="15.0"
-               width="25.0" height="25.0" allowCallbacks="Clicks &amp; Hover"
-               parentComponent="background"/>
-  </Component>
-  <Component type="ScriptPanel" id="PeakMeterPnl" x="80.0" y="30.0" width="140.0"
-             height="340.0" bgColour="16777215" itemColour="4934475" itemColour2="4934475"
-             textColour="16777215" borderSize="0.0" borderRadius="0.0" visible="0">
-    <Component type="ScriptSlider" id="PeakMeterFillR" x="79.0" y="30.0" middlePosition="-20.0"
-               min="-100.0" max="0.0" text="PeakMeterVertFill" enabled="0" width="40.0"
-               height="280.0" bgColour="1513239" itemColour="1176553415" itemColour2="1676492"
-               textColour="4280338375" parentComponent="PeakMeterPnl"/>
-    <Component type="ScriptSlider" id="PeakMeterPointR" x="79.0" y="30.0" middlePosition="-20.0"
-               min="-100.0" max="0.0" text="PeakMeterVertPointer" enabled="0"
-               width="40.0" height="280.0" bgColour="2148295" itemColour="1176553415"
-               itemColour2="1676492" textColour="4280338375" parentComponent="PeakMeterPnl"/>
+    <Component type="ScriptPanel" id="randomize_pnl_btn" x="380.0" y="25.0"
+               parentComponent="background" width="35.0" height="35.0" allowCallbacks="Clicks &amp; Hover"/>
+    <Component type="ScriptPanel" id="ThemeSpinner_pnl" x="423.0" y="33.0" width="20.0"
+               height="20.0" parentComponent="background"/>
+    <Component type="ScriptButton" id="Tape_btn" x="140.5" y="30.0" parentComponent="background"
+               width="100" height="30" text="Tape" radioGroup="1.0"/>
+    <Component type="ScriptButton" id="ThemeSpinner_btn" x="415.0" y="25.0"
+               parentComponent="background" width="35.0" height="35.0" enableMidiLearn="0"/>
   </Component>
 </ContentProperties>

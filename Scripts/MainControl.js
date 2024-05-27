@@ -2,7 +2,7 @@ namespace Main_Controls {
 	
 	const var MainControls = [Content.getComponent("Saturation_knb"),
 	                          Content.getComponent("Texture_knb"),
-	                          Content.getComponent("Mix_knb")];
+	                          Content.getComponent("Tape_knb")];
 	
 	const var Gains = [Content.getComponent("InputGain_knb"),
 	                   Content.getComponent("OutputGain_knb")];
@@ -27,12 +27,14 @@ namespace Main_Controls {
 			case 'Saturation_knb':
 				BandFX.setAttribute(BandFX.Tube, value);
 				break;
-			case 'Texture_knb':
-				BandFX.setAttribute(BandFX.TextureMix, value);
+			case 'Tape_knb':
+				BandFX.setAttribute(BandFX.Tape, value);
+				TapeAnimation.setGlow(value);
 				break;
-			case 'Mix_knb':
-				BandFX.setAttribute(BandFX.Mix, value);
-				break;			
+			case 'Texture_knb':
+				BandFX.setAttribute(BandFX.Textures, value);
+				break;
+			
 		}
 	}
 	
@@ -49,16 +51,22 @@ namespace Main_Controls {
 	}
 	
 	inline function containerRoutine(g) {
+	 	 local padding = 5;
+	 	 local a = [
+	 	 	0 + padding,
+	 	 	0 + padding,
+	 	 	this.getWidth() - padding * 2,
+	 	 	this.getHeight() -padding * 2,
+	 	 ];
 	 	 
-	 	 local a = this.getLocalBounds(Primitives.Spacings.md);
 	 	 g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
-	 	 g.drawRoundedRectangle(a, Primitives.BorderRadius.md, Primitives.BorderSize.sm);
+	 	 g.drawRoundedRectangle(a, Primitives.BorderRadius.md, Primitives.BorderSize.md);
 	 	 
 	 	 local text_a = [
-	 	 	40,
-	 	 	34,
-	 	 	80,
-	 	 	19
+	 	 	73,
+	 	 	49,
+	 	 	110,
+	 	 	20
 	 	 ];
 	 	 
 	 	 g.rotate(Math.toRadians(90), [text_a[2] / 2, text_a[3] / 2]);
@@ -67,7 +75,7 @@ namespace Main_Controls {
 	 	 g.fillRect(text_a);
 	 	 
  	 	 g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
-	 	 g.setFont(Theme.SemiBold, 16);
+	 	 g.setFont(Theme.SemiBold, 20);
 	 	 g.drawAlignedText('BREITBAND', text_a, 'centred');
 
 	 	 

@@ -4,6 +4,19 @@ namespace UI {
 	const var display = Content.getComponent("display");
 	const var Controls_Container = Content.getComponent("MainPanel_Controls_Container");
 	
+	background.setKeyPressCallback(onBackgroundKeypress);
+	inline function onBackgroundKeypress(key) {
+		if (key.cmd) {
+			// CMD + Z Back
+			if (key.keyCode === 90) {
+				Engine.undo();
+			}
+			if (key.keyCode === 89) {
+				Engine.redo();
+			}
+		}
+	}
+	
 	Theme.registerThemePanel(background);
 	background.setPaintRoutine(function(g) {
 	

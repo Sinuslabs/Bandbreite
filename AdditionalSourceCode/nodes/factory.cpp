@@ -30,12 +30,16 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::ToTape5<1>, project::ToTape5<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::TexturizeMS<1>, project::TexturizeMS<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::TapeDust<1>, project::TapeDust<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::Tape<1>, project::Tape<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::Sweeten<1>, project::Sweeten<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::Pockey2<1>, project::Pockey2<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::PocketVerbs<1>, project::PocketVerbs<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::IronOxide5<1>, project::IronOxide5<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::GrooveWear<1>, project::GrooveWear<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::Flutter<1>, project::Flutter<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::ClipSoftly<1>, project::ClipSoftly<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::Channel9<1>, project::Channel9<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::Band<1>, wrap::illegal_poly<project::Band<1>>>();
-		registerDataNode<project::Test1_networkdata>();
 	}
 };
 }

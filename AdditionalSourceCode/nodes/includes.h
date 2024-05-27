@@ -9,10 +9,15 @@
 
 // Include third party header files ----------------
 
+#include "Channel9.h"
 #include "ClipSoftly.h"
 #include "Flutter.h"
 #include "GrooveWear.h"
+#include "IronOxide5.h"
+#include "PocketVerbs.h"
 #include "Pockey2.h"
+#include "Sweeten.h"
+#include "Tape.h"
 #include "TapeDust.h"
 #include "TexturizeMS.h"
 #include "ToTape5.h"
@@ -22,7 +27,6 @@
 // Include compiled network files ------------------
 
 #include "Band.h"
-#include "Test1_networkdata.h"
 
 #if (defined (_WIN32) || defined (_WIN64))
 #pragma warning( pop )

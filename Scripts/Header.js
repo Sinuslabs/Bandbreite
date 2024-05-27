@@ -1,77 +1,78 @@
 namespace Header {
 	
-	const var Product_Logo_pnlbtn = Content.getComponent("Product_Logo_pnlbtn");
-	const var Textures_btn = Content.getComponent("Textures_btn");
+	//invisble click btn
+	const var extra_click_area_btn = Content.getComponent("extra_click_area_btn");
+
+	const var LAF_hiddenBTN = Content.createLocalLookAndFeel();
+	LAF_hiddenBTN.registerFunction('drawToggleButton', hiddenBtn_LAF);
 	
-	const var ThemeSpinner_pnlbtn = Content.getComponent("ThemeSpinner_pnlbtn");
+	extra_click_area_btn.setLocalLookAndFeel(LAF_hiddenBTN);
+	extra_click_area_btn.setControlCallback(onBackToTape);
+	
+	const var Product_Logo_btn = Content.getComponent("Product_Logo_btn");
+	const var Textures_btn = Content.getComponent("Textures_btn");
+	const var Tape_btn = Content.getComponent("Tape_btn");
+	
+	const var ThemeSpinner_btn = Content.getComponent("ThemeSpinner_btn");
 
 	Textures_btn.setControlCallback(onTextures);
+	Textures_btn.setLocalLookAndFeel(Styles.LAF_textButton);
 	
+	Tape_btn.setControlCallback(onTape);
+	Tape_btn.setLocalLookAndFeel(Styles.LAF_textButton);
+
 	// sync to theme
-	ThemeSpinner_pnlbtn.setValue({value: true});
-	ThemeSpinner_pnlbtn.setPaintRoutine(fakeHoverRoutine);
-	ThemeSpinner_pnlbtn.setControlCallback(onTheme);
-	ThemeSpinner_pnlbtn.setMouseCallback(onPanelMouseCallback);
+	ThemeSpinner_btn.setValue(0);
+	ThemeSpinner_btn.setControlCallback(onTheme);
+	ThemeSpinner_btn.setLocalLookAndFeel(LAF_hiddenBTN);
 	
-	Product_Logo_pnlbtn.setValue({value: false});
-	Product_Logo_pnlbtn.setPaintRoutine(fakeHoverRoutine);
-	Product_Logo_pnlbtn.setControlCallback(onLogo);
-	Product_Logo_pnlbtn.setMouseCallback(onPanelMouseCallback);
+	Product_Logo_btn.setLocalLookAndFeel(LAF_hiddenBTN);
+	Product_Logo_btn.setControlCallback(onLogo);
 	
-	inline function onLogo(component, value) {
-		Console.print(trace(value));
-		if (value.value) {
-			Router.goTo('About');
-			Textures_btn.setValue(0);
-		} else {
-			Router.goTo('Tape');
+	inline function onBackToTape(component, value) {
+		if (value) {
+			Tape_btn.setValue(1);
+			Tape_btn.changed();
 		}
 	}
+		
+	inline function onLogo(component, value) {
+		Console.print(value);
+		
+		if (Router.currentRoute === 'About') {
+			Tape_btn.setValue(1);
+			Tape_btn.changed();
+			return;
+		}
 	
-	inline function onTheme(component, value) {
-		Console.print(value.value);
-		Theme.toggleTheme(value.value);	
-		ThemeAnimation.onClick(value.value);
+		if (value) {
+			Router.goTo('About');
+		}
 	}
 	
 	inline function onTextures(component, value) {
 		if (value) {
 			Router.goTo('Textures');
-			Product_Logo_pnlbtn.setValue({value: false});
-			Product_Logo_pnlbtn.repaint();
-		} else {
+		}
+	}
+	
+	inline function onTape(component, value) {
+		if (value) {
 			Router.goTo('Tape');
 		}
 	}
 	
-	inline function fakeHoverRoutine(g) {
-		local data = this.getValue();
-		local a = this.getLocalBounds(1);
-		if (data.hover) {
+	inline function onTheme(component, value) {
+		Theme.toggleTheme(value);	
+		ThemeAnimation.onClick(value);
+	}
+	
+	inline function hiddenBtn_LAF(g, obj) {
+		local a = obj.area;
+		a = StyleHelpers.addPadding(a, 1);
+		if (obj.over) {
 			g.setColour(Colours.withAlpha(Colours.black, 0.2));
 			g.fillRoundedRectangle(a, Primitives.BorderRadius.sm);
 		}
-	}
-	
-	inline function onPanelMouseCallback(event) {
-		local data = this.getValue();
-		local props = {
-			value: data.value,
-			hover: event.hover
-		};
-		
-		if (event.clicked && !event.mouseUp) {
-			props.value = !data.value;
-			this.setValue(props);
-			this.changed();
-			this.repaint();
-			return;
-		}
-		this.setValue(props);
-		this.repaint();
-	}
-	
-	
-
-	
+	}	
 }

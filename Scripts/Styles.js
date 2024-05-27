@@ -24,23 +24,57 @@ namespace Styles {
 		}
 	}
 
+	const LAF_displayBars = Content.createLocalLookAndFeel();
+	LAF_displayBars.registerFunction('drawRotarySlider', displayBarsLAF);
+	inline function displayBarsLAF(g, obj) {
+		
+		local a = obj.area;
+		local BAR_HEIGHT = 0.7;
+		local TEXT_HEIGHT = 1 - BAR_HEIGHT;
+		local BORDER_RADIUS = 1;
+		local BORDER_SIZE = 2;
+		local BAR_PADDING = 10;
+		local value = 1 - obj.valueNormalized;
+		local upper_area = [a[0], a[1], a[2], a[3] * BAR_HEIGHT];
+		local text_area = [a[0], a[3] * BAR_HEIGHT, a[2], a[3] * TEXT_HEIGHT];
+	
+		local container_area = StyleHelpers.addPadding(upper_area, BAR_PADDING);
+		local bar_area = [
+			container_area[0],
+			container_area[1],
+			container_area[2],
+			container_area[3] * value
+		];
+		
+		g.setColour(Theme.THEME.Colors.Display.on_display);
+		g.drawRoundedRectangle(container_area, BORDER_RADIUS, BORDER_SIZE);
+		g.fillRect(container_area);
+		g.setFont(Theme.Regular, 12);
+		g.drawAlignedText(obj.text, text_area, 'centred');
+		
+		g.setColour(Theme.THEME.Colors.Display.on_display_contrast);
+		g.fillRoundedRectangle(bar_area, 2);
+	}
 	
 	const var LAF_DisplayTextKnob = Content.createLocalLookAndFeel();	
 	LAF_DisplayTextKnob.registerFunction('drawRotarySlider', DisplayTextKnob_LAF);
 	
 	inline function DisplayTextKnob_LAF(g, obj) {
 		local a = obj.area;
+		a = StyleHelpers.addPadding(a, 3);
+		local textA = StyleHelpers.addPadding(a, Primitives.Spacings.md);
 		
 		g.setColour(Theme.THEME.Colors.Display.on_display_var);
-		
-		if (obj.over) {
-			g.setColours(Theme.THEME.Colors.Display.on_display);
+		if (obj.hover || obj.clicked) {
+			g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
+			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
+			g.setColour(Theme.THEME.Colors.Display.on_display);
 		}
 		
-		g.setFont(Theme.SemiBold, 18);
-		g.drawAlignedText(obj.valueAsText, a, 'centredTop');
-		g.setFont(Theme.Regular, 14);
-		g.drawAlignedText(obj.text, a, 'centredBottom');
+		g.setFont(Theme.SemiBold, 24);
+		g.drawAlignedText(obj.valueAsText, textA, 'centredTop');
+		g.setFont(Theme.Regular, 16);
+		g.drawAlignedText(obj.text, textA, 'centredBottom');
 	}
 	
 	const LAF_displayButton = Content.createLocalLookAndFeel();
@@ -73,6 +107,29 @@ namespace Styles {
 		
 		g.setFont(Theme.Regular, 14);
 		g.drawAlignedText(obj.text, textA, 'centred');
+	}
+	
+	const LAF_textButton = Content.createLocalLookAndFeel();
+	LAF_textButton.registerFunction("drawToggleButton", textButtonLAF);
+	inline function textButtonLAF(g, obj) {
+		
+		local a = obj.area;
+		local textArea = StyleHelpers.addPadding(a, 4);
+		
+		g.setColour(Theme.THEME.Colors.Display.on_display_var);
+		
+		if (obj.over) {
+			g.setColour(Theme.THEME.Colors.Display.on_display);
+		}
+		
+		if (obj.value) {
+			g.setColour(Theme.THEME.Colors.Display.on_display);
+			g.drawLine(0, a[2], a[3] - 1, a[3] - 1, 1);
+		}
+		
+		g.setFontWithSpacing(Theme.Regular, 18, 0.02);
+		g.drawAlignedText(obj.text, textArea, "centred");
+		
 	}
 	
 	const LAF_displayKnob = Content.createLocalLookAndFeel();
@@ -184,13 +241,7 @@ namespace Styles {
 		const ARC_PADDING = 0;
 		
 		// SOCKEL
-		const SOCKEL_PADDING = 3.5;
-		
-		// INDICATOR
-		const INDICATOR_THICKNESS = 6;
-		const INDICATOR_LENGTH = 9;
-		const INDICATOR_BORDER_RADIUS = 2;
-		const INDICATOR_GAP = 5;
+		const SOCKEL_PADDING = 3;
 		
 		// MAIN BODY
 		const BORDER = 2 ;
@@ -213,8 +264,7 @@ namespace Styles {
 			var text = obj.text;
 			
 			var sockelA = StyleHelpers.addPadding([a[0], a[1], a[2], a[2]], SOCKEL_PADDING);
-			var knobAreaBorder = StyleHelpers.addPadding([a[0], a[1], a[2], a[2]], PADDING);
-			var knobArea = StyleHelpers.addPadding(knobAreaBorder, BORDER);
+			var knobArea = StyleHelpers.addPadding([a[0], a[1], a[2], a[2]], PADDING);
 			var sa = StyleHelpers.addPadding([a[0], a[1], a[2], a[2]], PADDING + SHADOW_PADDING);
 			
 			// special padded area
@@ -228,14 +278,14 @@ namespace Styles {
 			// Colours
 			var ARC_COLOUR = Theme.THEME.Colors.Knob.knob_accent;
 			var INDICATOR_COLOUR = Theme.THEME.Colors.Knob.knob_accent;
-			var SOCKEL = Theme.THEME.Colors.Knob.knob_body;
+			var SOCKEL = Theme.THEME.Colors.Knob.knob_base;
 			var BODY = Theme.THEME.Colors.Knob.knob_body;
 			var BORDER_COLOUR = Theme.THEME.Colors.Knob.knob_outline;
 			var TEXT_COLOUR = Theme.THEME.Colors.Knob.knob_accent;
-			var SHADOW_COLOUR = Colours.black;
+			var SHADOW_COLOUR = Colours.withAlpha(Colours.black, 0.25);
+			var TAPE_SOCKEL = Theme.THEME.Colors.Display.on_display_contrast;
 			
 			if (disabled) {
-				// Special case for the ARC Colour since its black transparency is not doing much
 				ARC_COLOUR = Theme.THEME.Colors.Knob.knob_accent_disabled;
 				INDICATOR_COLOUR = Theme.THEME.Colors.Knob.knob_accent_disabled;
 				BODY = Theme.THEME.Colors.Knob.knob_body_disabled;
@@ -249,7 +299,12 @@ namespace Styles {
 				text = obj.valueAsText;
 			}
 			
-			g.setColour(BODY);
+			g.setColour(SOCKEL);
+			
+			if (obj.text === 'Tape') {
+				g.setColour(TAPE_SOCKEL);
+			}
+			
 			g.fillEllipse(sockelA);
 			
 			g.setColour(ARC_COLOUR);
@@ -266,11 +321,11 @@ namespace Styles {
 			
 			// BORDER
 			g.setColour(BORDER_COLOUR);
-			g.drawEllipse(knobAreaBorder, 1);
+			g.drawEllipse(knobArea, 1);
 			
 			// INDICATOR
 			g.setColour(INDICATOR_COLOUR);
-			drawIndicator(g, obj.valueNormalized, knobAreaBorder);
+			drawIndicator(g, obj.valueNormalized, knobArea);
 	
 		});
 		
@@ -289,13 +344,13 @@ namespace Styles {
 		}
 	
 		inline function drawLabel(g, label, a, padded_a)	{
-			g.setFont(Theme.SemiBold, 12);			
-			g.drawAlignedText(label, [a[0], padded_a[1] + padded_a[3] * 0.95, a[2], padded_a[3]], 'centred');
+			g.setFont(Theme.SemiBold, 16);			
+			g.drawAlignedText(label, [a[0], padded_a[1] + padded_a[3] * 0.9, a[2], padded_a[3]], 'centred');
 		}
 		
 		inline function drawIndicator(g, value, iconArea)
 		{
-			local INDICATOR_THICKNESS = 4;
+			local INDICATOR_THICKNESS = 5;
 			local INDICATOR_LENGTH = 10;
 			local INDICATOR_GAP = 5;
 			local width = iconArea[2] + iconArea[0] * 2;

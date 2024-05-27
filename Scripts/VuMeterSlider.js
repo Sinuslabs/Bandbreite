@@ -9,36 +9,44 @@ namespace VuMeterSlider {
 	inline function VU_Slider_LAF(g, obj) {
 		local a = obj.area;
 		
-		local DOT_SIZE = 5;
+		local sliderA = [
+			a[0],
+			a[1],
+			a[2],
+			a[3] - 30
+		];
+		
+		local DOT_SIZE = 7;
 		local thickness = 1;
 		
 		local SLIDER_HEIGHT = 1;
 		local LINE_THICKNESS = 2;
 		local DOT_MAX_TRAVEL = 0.99;
-		local DOT_RADIUS = 5;
-		local LABEL_BOTTOM_PADDING = 14;
+		local DOT_RADIUS = 8;
+		local LABEL_BOTTOM_PADDING = 12;
 		local value = obj.valueNormalized;
 		
-		local x = a[2] / 2 - DOT_SIZE / 2 - Primitives.Spacings.md;
-		local y = a[3] * DOT_MAX_TRAVEL * (1 - value);
+		local x = sliderA[2] / 2 - DOT_SIZE / 2;
+		local y = sliderA[3] * DOT_MAX_TRAVEL * (1 - value);
 		local tri_area = [x, y, DOT_SIZE, DOT_SIZE];
 		
 		local bottomPadding_a = [a[0], a[1], a[2], a[3] - LABEL_BOTTOM_PADDING];
 		obj.enabled ?
-			g.setColour(Theme.THEME.Colors.Display.on_display_var)
+			g.setColour(Theme.THEME.Colors.Display.on_display)
 			: Theme.THEME.Colors.Display.on_display_disabled;
 			
 		if (obj.hover) {
-			g.setColour(Theme.THEME.Colors.Display.on_display);
+			g.setColour(Theme.THEME.Colors.Effect.yellow);
 		}
 		
-		//g.fillTriangle(tri_area, Math.toRadians(90));
 		g.fillEllipse(tri_area);
-		
-		g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
+		g.setColour(Colours.black);
+		g.drawEllipse(tri_area, 1);
 		
 		if (obj.hover || obj.clicked) {
-			g.setFont(Theme.Regular, 12);
+			g.setColour(Theme.THEME.Colors.Display.on_display);
+		
+			g.setFont(Theme.SemiBold, 16);
 			g.drawAlignedText(obj.valueAsText.replace(' dB', ''), bottomPadding_a, 'centredBottom');
 			g.setFont(Theme.Regular, 14);
 			g.drawAlignedText(obj.suffix, a, 'centredBottom');
@@ -57,18 +65,15 @@ namespace VuMeterSlider {
    
 	// Vertical Line Level Meter Fill
 	 if (obj.text == "PeakMeterVertFill") {
-		 g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
-		 g.fillRoundedRectangle(a, 0.5);
-	 
 		g.setColour(Theme.THEME.Colors.Display.on_display);	
-		g.fillRoundedRectangle([0, a[3] * (1 - obj.valueNormalized), a[2], a[3]  - a[3] * (1 - obj.valueNormalized)], 0);
+		g.fillRoundedRectangle([0, a[3] * (1 - obj.valueNormalized), a[2], a[3]  - a[3] * (1 - obj.valueNormalized)], Primitives.BorderRadius.sm);
  	}
 	 	
 	// Vertical Line Level Meter Pointer
 	 else if (obj.text == "PeakMeterVertPointer") {
 	     		
 			g.setColour(Theme.THEME.Colors.Display.on_display);		
-			g.fillRoundedRectangle([0, a[3] - thickness - (a[3]-thickness)*vertpos, a[2], thickness], 0.5);	
+			g.fillRoundedRectangle([0, a[3] - thickness - (a[3]-thickness)*vertpos, a[2], thickness], Primitives.BorderRadius.xs);	
 	 	}
 	 
 

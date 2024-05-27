@@ -6,7 +6,7 @@
   <Description value=""/>
   <BundleIdentifier value="com.sinuslabs.breitband"/>
   <PluginCode value="Brei"/>
-  <EmbedAudioFiles value="0"/>
+  <EmbedAudioFiles value="1"/>
   <EmbedImageFiles value="Yes"/>
   <SupportFullDynamicsHLAC value="No"/>
   <AdditionalDspLibraries value=""/>
