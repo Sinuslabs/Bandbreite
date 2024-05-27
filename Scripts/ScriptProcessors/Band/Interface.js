@@ -8,6 +8,7 @@ include("StyleHelpers.js");
 include("Styles.js");
 include("Animations.js");
 
+include("FX.js");
 include("UI.js");
 include("VuMeterSlider.js");
 include("Header.js");

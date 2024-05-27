@@ -60,19 +60,30 @@ namespace Styles {
 	LAF_DisplayTextKnob.registerFunction('drawRotarySlider', DisplayTextKnob_LAF);
 	
 	inline function DisplayTextKnob_LAF(g, obj) {
+		
 		local a = obj.area;
 		a = StyleHelpers.addPadding(a, 3);
+		
+		local valueText = obj.valueAsText;		
 		local textA = StyleHelpers.addPadding(a, Primitives.Spacings.md);
 		
 		g.setColour(Theme.THEME.Colors.Display.on_display_var);
 		if (obj.hover || obj.clicked) {
+			
 			g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
 			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
+			
 			g.setColour(Theme.THEME.Colors.Display.on_display);
 		}
 		
-		g.setFont(Theme.SemiBold, 24);
-		g.drawAlignedText(obj.valueAsText, textA, 'centredTop');
+		if (obj.text === 'Low' || obj.text === 'High') {
+			if (obj.value > 0) {
+				valueText = '+' + valueText;
+			}
+		}
+		
+		g.setFont(Theme.SemiBold, 23);
+		g.drawAlignedText(valueText, textA, 'centredTop');
 		g.setFont(Theme.Regular, 16);
 		g.drawAlignedText(obj.text, textA, 'centredBottom');
 	}
@@ -302,8 +313,18 @@ namespace Styles {
 			g.setColour(SOCKEL);
 			
 			if (obj.text === 'Tape') {
-				g.setColour(TAPE_SOCKEL);
+				g.setColour(BORDER_COLOUR);
 			}
+			
+			if (obj.text === 'Tube') {
+				
+				g.setColour(Colours.mix(
+						Primitives.Colors.Orange['100'],
+						Primitives.Colors.Orange['600'],
+						obj.valueNormalized));
+			}
+			
+			
 			
 			g.fillEllipse(sockelA);
 			

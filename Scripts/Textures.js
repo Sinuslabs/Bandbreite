@@ -1,14 +1,15 @@
 namespace Textures {
-	
+
 	const var TextureKnobs = [Content.getComponent("Dust_knb"),
-	                        Content.getComponent("Wear_knb"),
-	                        Content.getComponent("Freq_knb"),
-             	            Content.getComponent("Rez_knb")	];
-	
+	Content.getComponent("Wear_knb"),
+	Content.getComponent("Noise_knb"),
+	Content.getComponent("Bump_knb"),
+	];
+
 	const var Dust_Control_Container = Content.getComponent("Textures_Container");
-	
-	Dust_Control_Container.setPaintRoutine(function(g){});
-	
+
+	Dust_Control_Container.setPaintRoutine(function (g) { });
+
 	for (knb in TextureKnobs) {
 		knb.setLocalLookAndFeel(Styles.LAF_DisplayTextKnob);
 		knb.setControlCallback(onTextureKnobs);
@@ -17,17 +18,17 @@ namespace Textures {
 	inline function onTextureKnobs(component, value) {
 		switch (component.getId()) {
 			case 'Dust_knb':
-				BandFX.setAttribute(BandFX.Textures_Dust, value);
+				FX.BandFX.setAttribute(FX.BandFX.Textures_Dust, value);
 				break;
 			case 'Wear_knb':
-				BandFX.setAttribute(BandFX.Textures_Wear, value);
+				FX.BandFX.setAttribute(FX.BandFX.Textures_Wear, value);
 				break;
-			case 'Freq_knb':
-				BandFX.setAttribute(BandFX.Textures_Freq, value);
+			case 'Noise_knb':
+				FX.BandFX.setAttribute(FX.BandFX.Tape_noise, value);
 				break;
-			case 'Rez_knb':
-				BandFX.setAttribute(BandFX.Textures, value);
+			case 'Bump_knb':
+				FX.BandFX.setAttribute(FX.BandFX.Tape_Bump, value);
 				break;
 		}
-	}	
+	}
 }

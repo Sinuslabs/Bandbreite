@@ -21,10 +21,14 @@ namespace VuMeterSlider {
 		
 		local SLIDER_HEIGHT = 1;
 		local LINE_THICKNESS = 2;
-		local DOT_MAX_TRAVEL = 0.99;
+		local DOT_MAX_TRAVEL = 0.96;
 		local DOT_RADIUS = 8;
 		local LABEL_BOTTOM_PADDING = 12;
 		local value = obj.valueNormalized;
+		
+		if (obj.hover) {
+			DOT_SIZE = 9;
+		}
 		
 		local x = sliderA[2] / 2 - DOT_SIZE / 2;
 		local y = sliderA[3] * DOT_MAX_TRAVEL * (1 - value);
@@ -36,7 +40,7 @@ namespace VuMeterSlider {
 			: Theme.THEME.Colors.Display.on_display_disabled;
 			
 		if (obj.hover) {
-			g.setColour(Theme.THEME.Colors.Effect.yellow);
+			g.setColour(Theme.THEME.Colors.Display.on_display);
 		}
 		
 		g.fillEllipse(tri_area);
@@ -65,14 +69,14 @@ namespace VuMeterSlider {
    
 	// Vertical Line Level Meter Fill
 	 if (obj.text == "PeakMeterVertFill") {
-		g.setColour(Theme.THEME.Colors.Display.on_display);	
+		g.setColour(Theme.THEME.Colors.Display.on_display_var);	
 		g.fillRoundedRectangle([0, a[3] * (1 - obj.valueNormalized), a[2], a[3]  - a[3] * (1 - obj.valueNormalized)], Primitives.BorderRadius.sm);
  	}
 	 	
 	// Vertical Line Level Meter Pointer
 	 else if (obj.text == "PeakMeterVertPointer") {
 	     		
-			g.setColour(Theme.THEME.Colors.Display.on_display);		
+			g.setColour(Theme.THEME.Colors.Display.on_display_var);		
 			g.fillRoundedRectangle([0, a[3] - thickness - (a[3]-thickness)*vertpos, a[2], thickness], Primitives.BorderRadius.xs);	
 	 	}
 	 
