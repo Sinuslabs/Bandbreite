@@ -18,12 +18,12 @@
             <Control type="ScriptSlider" id="Wear_knb" value="0.02999999932944775"/>
             <Control type="ScriptSlider" id="Bump_knb" value="0.300000011920929"/>
             <Control type="ScriptSlider" id="Noise_knb" value="0.09000000357627869"/>
-            <Control type="ScriptButton" id="extra_click_area_btn" value="1.0"/>
+            <Control type="ScriptButton" id="discount_copy_btn" value="0.0"/>
             <Control type="ScriptSlider" id="InputGain_knb" value="-0.2999991178512573"/>
-            <Control type="ScriptSlider" id="OutputGain_knb" value="8.940696716308594e-7"/>
-            <Control type="ScriptSlider" id="Saturation_knb" value="0.0"/>
-            <Control type="ScriptSlider" id="Tape_knb" value="0.0"/>
-            <Control type="ScriptSlider" id="Texture_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="OutputGain_knb" value="-0.09999910742044449"/>
+            <Control type="ScriptSlider" id="Saturation_knb" value="0.4699999988079071"/>
+            <Control type="ScriptSlider" id="Tape_knb" value="0.5"/>
+            <Control type="ScriptSlider" id="Texture_knb" value="0.5"/>
           </Content>
           <UIData Source="BandUIData"/>
         </Processor>
@@ -56,15 +56,16 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="Hardcoded Master FX" ID="BandFX" Bypassed="0" Network="Band"
-                   Tube="0.0" Tape="0.0" Tape_Slam="0.2300000041723251" Tape_Bump="0.300000011920929"
-                   Tape_high="0.5" Tape_low="0.5" Flutter="0.2000000029802322" Tape_noise="0.09000000357627869"
+                   Tube="0.4699999988079071" Tape="0.5" Tape_Slam="0.2300000041723251"
+                   Tape_Bump="0.300000011920929" Tape_high="0.5" Tape_low="0.5"
+                   Flutter="0.2000000029802322" Tape_noise="0.09000000357627869"
                    Tape_Sweeten="0.1000000014901161" Textures_Mode="1.0" Textures_Wear="0.02999999932944775"
                    Textures_Dust="0.01999999955296516" Textures_Freq="0.2300000041723251"
-                   Textures_Rez="0.5540000200271606" Textures="0.0">
+                   Textures_Rez="0.5540000200271606" Textures="0.5">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="SimpleGain" ID="OutGain" Bypassed="0" Gain="1.0354386859035e-6"
+        <Processor Type="SimpleGain" ID="OutGain" Bypassed="0" Gain="-0.0999988466501236"
                    Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
           <ChildProcessors>
             <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">

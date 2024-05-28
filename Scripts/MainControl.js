@@ -47,7 +47,7 @@ namespace Main_Controls {
 		}
 		
 		if (obj.value) {
-			g.setColour(Theme.THEME.Colors.UI.on_background);
+			g.setColour(Theme.THEME.Colors.UI.on_background_var);
 		}	
 	
 		g.setFont(Theme.SemiBold, 20);
@@ -77,6 +77,7 @@ namespace Main_Controls {
 		switch (component.getId()) {
 			case 'Saturation_knb':
 				FX.BandFX.setAttribute(FX.BandFX.Tube, value);
+				TapeAnimation.setTube(value);
 				break;
 			case 'Tape_knb':
 				FX.BandFX.setAttribute(FX.BandFX.Tape, value);

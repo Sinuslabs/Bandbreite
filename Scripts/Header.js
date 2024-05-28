@@ -73,11 +73,42 @@ namespace Header {
 		}
 	}
 	
+	
+	reg clickCounter = 0;
+	const var clickThreshold = 5; // Number of clicks required to trigger custom function
+	const var decreaseInterval = 500;
+	const var decraseClick = 0.5;
+	
+	const var easteregg_timer = Engine.createTimerObject();
+	easteregg_timer.setTimerCallback(onEastereggTimer);
+	
 	inline function onTheme(component, value) {
-		Console.print(value);
 	
 		Theme.toggleTheme(value);	
 		ThemeAnimation.onClick(value);
+		
+		clickCounter++;
+		
+		if (!easteregg_timer.isTimerRunning()) {
+				easteregg_timer.startTimer(decreaseInterval);
+		}
+	}
+	
+	inline function onEastereggTimer() {
+		Console.print(clickCounter);
+		clickCounter = clickCounter - decraseClick;
+
+		if (clickCounter <= 0) easteregg_timer.stopTimer();
+		if (clickCounter >= clickThreshold) {
+			Router.goTo('Easteregg');
+			ConfettiAnimation.burstAnimation();			
+			easteregg_timer.stopTimer();
+			clickCounter = 0;
+			Tape_btn.setValue(0);
+			Textures_btn.setValue(0);
+			Product_Logo_btn.setValue(0);
+			Breitband_btn.setValue(0);
+		}
 	}
 	
 	inline function hiddenBtn_LAF(g, obj) {

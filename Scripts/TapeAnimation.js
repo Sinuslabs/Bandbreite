@@ -14,6 +14,7 @@ namespace TapeAnimation {
 	reg slam = 0;
 	reg tape = 0.5;
 	reg sweeten = 0;
+	reg tube = 0;
 	
 	const animation = Animations.tape;
 	const var AnimationPanel = Content.getComponent("TapeAnimation");
@@ -33,8 +34,10 @@ namespace TapeAnimation {
 	
 	inline function setGlow(value) {
 		tape = value;
-		TapeAnimation_wrapper_pnl.setValue({'glow': value});
-		TapeAnimation_wrapper_pnl.repaint();
+	}
+	
+	inline function setTube(value) {
+		tube = value;
 	}
 	
 	inline function setFlutter(value) {
@@ -51,7 +54,6 @@ namespace TapeAnimation {
 	
 	inline function tubeGlowRoutine(g) {
 		local a = this.getLocalBounds(12);
-		local data = this.getValue();
 		
 		local min = 14;
 		local max = 4;
@@ -92,15 +94,21 @@ namespace TapeAnimation {
 			right_dot_a[3]
 		];
 		
-		local amount = min + data.glow * (max - min);
+		local amount = min + tape * (max - min);
 		
 		left_dot_a = StyleHelpers.addPadding(left_dot_a, amount);
 		right_dot_a = StyleHelpers.addPadding(right_dot_a, amount);
 		
-		local dot_color = Colours.withAlpha(Theme.THEME.Colors.Effect.red, tape);
+		local left_dot_glow_modifier = Math.range(Math.sin(tick / 7) + 1.9, 0.8, 1);
+		local right_dot_glow_modifier = Math.range(Math.sin(tick / 7.12) + 1.9, 0.65, 1);
 		
-		g.setColour(dot_color);
+		local left_dot_color = Colours.withAlpha(Theme.THEME.Colors.Effect.red, tape * left_dot_glow_modifier);
+		local right_dot_color = Colours.withAlpha(Theme.THEME.Colors.Effect.red, tape * right_dot_glow_modifier);
+		
+		g.setColour(left_dot_color);
 		g.fillEllipse(left_dot_a);
+		
+		g.setColour(right_dot_color);
 		g.fillEllipse(right_dot_a);
 		
 		// Playhead SLAAAM!
