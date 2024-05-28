@@ -50,7 +50,6 @@ namespace Header {
 	
 	inline function onLogo(component, value) {
 		
-	
 		if (Router.currentRoute === 'About') {
 			Breitband_btn.setValue(0);
 			Tape_btn.setValue(1);
@@ -75,6 +74,8 @@ namespace Header {
 	}
 	
 	inline function onTheme(component, value) {
+		Console.print(value);
+	
 		Theme.toggleTheme(value);	
 		ThemeAnimation.onClick(value);
 	}
@@ -108,7 +109,7 @@ namespace Header {
 		}
 		
 		if (obj.value) {
-			g.setColour(Theme.THEME.Colors.UI.on_background);
+			g.setColour(Theme.THEME.Colors.UI.on_background_var);
 		}	
 	
 		g.setFont(Theme.SemiBold, 20);

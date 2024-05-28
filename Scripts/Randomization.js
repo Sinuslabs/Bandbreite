@@ -6,18 +6,25 @@ namespace Randomization {
 	randomPanelButton.setMouseCallback(onRandomPanel);
 	
 	inline function onRandomPanel(event) {
-	
-		if (event.clicked && !event.mouseUp) {
-			
-			if (event.rightClick) {
-				RandomizerPopup.showControl(true);
-				return;
-			}
-		
-		randomPanelButton.repaint();
-		randomPanelButton.changed();		
-			
+		if (event.rightClick && event.result) {
+			Router.goTo('PresetBrowser');
 		}
+		
+		if (event.clicked && !event.mouseUp) {
+			randomPanelButton.repaint();
+			randomPreset();
+		}
+	}
+	
+	inline function randomPreset() {
+		
+		Engine.loadNextUserPreset(true);
+		Engine.performUndoAction(
+			{},
+			function(isUndo) {
+				if (isUndo) Engine.loadPreviousUserPreset(true);
+			});
+		
 	}
 	
 	inline function randomPanelRoutine(g) {

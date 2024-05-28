@@ -14,6 +14,7 @@ include("VuMeterSlider.js");
 include("Header.js");
 include("MainControl.js");
 
+include("UserSettings.js");
 include("Router.js");
 
 include("TapeAnimation.js");
@@ -24,15 +25,13 @@ include("Randomization.js");
 include("Textures.js");
 include("Tape.js");
 include("About.js");
-
+include("ZoomHandler.js");
 
 Content.makeFrontInterface(480, 540);
 
 const var InputGain = Synth.getEffect("InputGain");
 const var BandFX = Synth.getEffect("BandFX");
 const var OutGain = Synth.getEffect("OutGain");
-
-Settings.setZoomLevel(1);
 
 inline function addVisualGuide() {
 	
@@ -42,7 +41,7 @@ inline function addVisualGuide() {
 
 //addVisualGuide();
 
-
+UserSettings.load();
 function onNoteOn()
 {
 	

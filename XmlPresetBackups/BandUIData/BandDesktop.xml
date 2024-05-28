@@ -14,12 +14,12 @@
                      suffix="%" middlePosition="0.5" text="Slam" defaultValue="0.2300000041723251"
                      useUndoManager="1" pluginParameterName="Slam"/>
           <Component type="ScriptSlider" id="Tape_Low_knb" x="220.0" y="10.0" width="71.0"
-                     height="60" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
+                     height="60.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.0" text="Low" min="-0.5" max="0.5"
                      useUndoManager="1" pluginParameterName="Low"/>
           <Component type="ScriptSlider" id="Tape_High_knb" x="290.0" y="10.0" width="71.0"
                      height="60.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
-                     suffix="%" middlePosition="0.5" text="High" useUndoManager="1"
+                     suffix="%" middlePosition="0.0" text="High" useUndoManager="1"
                      pluginParameterName="High" min="-0.5" max="0.5"/>
           <Component type="ScriptSlider" id="Tape_Flutter_knb" x="80.0" y="10.0" width="71.0"
                      height="60.0" parentComponent="Tape_Control_Container" mode="NormalizedPercentage"
@@ -39,43 +39,51 @@
                  width="435.0" height="315.0" visible="0">
         <Component type="ScriptPanel" id="Textures_Container" x="39.0" y="75.0"
                    width="360.0" height="202.5" parentComponent="Textures_Route">
-          <Component type="ScriptSlider" id="Dust_knb" x="84.5" y="113.5" parentComponent="Textures_Container"
-                     width="75.0" height="65.0" text="Dust" mode="NormalizedPercentage"
+          <Component type="ScriptSlider" id="Dust_knb" x="74.5" y="103.5" parentComponent="Textures_Container"
+                     width="90.0" height="90.0" text="Dust" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Dust"/>
-          <Component type="ScriptSlider" id="Wear_knb" x="189.0" y="113.0" parentComponent="Textures_Container"
-                     width="75.0" height="65.0" text="Wear" mode="NormalizedPercentage"
+          <Component type="ScriptSlider" id="Wear_knb" x="179.0" y="103.0" parentComponent="Textures_Container"
+                     width="90.0" height="90.0" text="Wear" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Wear"/>
-          <Component type="ScriptSlider" id="Bump_knb" x="189.0" y="18.0" parentComponent="Textures_Container"
-                     width="75.0" height="65.0" text="Bump" mode="NormalizedPercentage"
+          <Component type="ScriptSlider" id="Bump_knb" x="179.0" y="-2.0" parentComponent="Textures_Container"
+                     width="90.0" height="90.0" text="Bump" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Bump"/>
-          <Component type="ScriptSlider" id="Noise_knb" x="64.0" y="8.0" parentComponent="Textures_Container"
-                     width="90" height="80" text="Noise" mode="NormalizedPercentage"
+          <Component type="ScriptSlider" id="Noise_knb" x="74.0" y="-2.0" parentComponent="Textures_Container"
+                     width="90.0" height="90.0" text="Noise" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Noise"/>
         </Component>
       </Component>
       <Component type="ScriptPanel" id="About_Route" x="7.5" y="7.5" parentComponent="display"
                  width="435.0" height="315.0" visible="0">
-        <Component type="ScriptLabel" id="Product_Title_lbl" x="114.0" y="52.5"
+        <Component type="ScriptLabel" id="Product_Title_lbl" x="113.0" y="75.5"
                    parentComponent="About_Route" text="BREITBAND" fontName="inter-semi"
                    fontSize="24.0" editable="0" width="192.0" height="42.0"/>
-        <Component type="ScriptLabel" id="Product_Description_lbl" x="114.0" y="90.0"
+        <Component type="ScriptLabel" id="Product_Description_lbl" x="113.0" y="113.0"
                    parentComponent="About_Route" text="FREE TAPE VST" width="195.0"
                    height="30.0" editable="0" fontName="inter-reg" fontSize="14.0"/>
-        <Component type="ScriptButton" id="Get_more_btn" x="114.0" y="135.0" parentComponent="About_Route"
+        <Component type="ScriptButton" id="Get_more_btn" x="113.0" y="158.0" parentComponent="About_Route"
                    text="Get more like this" width="195.0" height="52.5" saveInPreset="0"
                    enableMidiLearn="0" isMomentary="1"/>
-        <Component type="ScriptButton" id="Sinuslabs_Logo_btn" x="226.5" y="277.5"
-                   parentComponent="About_Route" text="Sinuslabs" width="204.0"
-                   height="27.0" saveInPreset="0" enableMidiLearn="0" isMomentary="1"/>
-        <Component type="ScriptButton" id="Youtube_btn" x="166.5" y="195.0" parentComponent="About_Route"
+        <Component type="ScriptButton" id="Sinuslabs_Logo_btn" x="293.5" y="288.5"
+                   parentComponent="About_Route" text="Sinuslabs" width="120.0"
+                   height="15.0" saveInPreset="0" enableMidiLearn="0" isMomentary="1"/>
+        <Component type="ScriptButton" id="Youtube_btn" x="165.5" y="218.0" parentComponent="About_Route"
                    width="37.5" height="37.5" text="youtube" saveInPreset="0" enableMidiLearn="0"
                    isMomentary="1"/>
-        <Component type="ScriptButton" id="Instagram_btn" x="219.0" y="195.0" parentComponent="About_Route"
+        <Component type="ScriptButton" id="Instagram_btn" x="218.0" y="218.0" parentComponent="About_Route"
                    width="37.5" height="37.5" text="insta$outline" saveInPreset="0"
                    enableMidiLearn="0" isMomentary="1"/>
         <Component type="ScriptLabel" id="berlin_label" x="9.0" y="277.5" parentComponent="About_Route"
                    text="FROM BERLIN WITH &lt;3" width="165.0" height="22.5" fontName="inter-reg"
                    fontSize="10.0" editable="0"/>
+      </Component>
+      <Component type="ScriptPanel" id="PresetBrowser_Route" x="0" y="0" width="450"
+                 height="330" parentComponent="display" visible="0">
+        <Component type="ScriptFloatingTile" id="PresetBrowser" x="55.0" y="65.0"
+                   width="340" height="260" parentComponent="PresetBrowser_Route"
+                   ContentType="PresetBrowser" bgColour="4143972352" itemColour="4294967295"
+                   itemColour2="0" Data="{&#10;  &quot;ShowSaveButton&quot;: true,&#10;  &quot;ShowExpansionsAsColumn&quot;: false,&#10;  &quot;ShowFolderButton&quot;: true,&#10;  &quot;ShowNotes&quot;: false,&#10;  &quot;ShowEditButtons&quot;: true,&#10;  &quot;EditButtonOffset&quot;: 10,&#10;  &quot;ShowAddButton&quot;: true,&#10;  &quot;ShowRenameButton&quot;: true,&#10;  &quot;ShowDeleteButton&quot;: true,&#10;  &quot;ShowFavoriteIcon&quot;: false,&#10;  &quot;ButtonsInsideBorder&quot;: false,&#10;  &quot;NumColumns&quot;: 1,&#10;  &quot;ColumnWidthRatio&quot;: [&#10;    0.3333333333333333,&#10;    0.3333333333333333,&#10;    0.3333333333333333&#10;  ],&#10;  &quot;ListAreaOffset&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;ColumnRowPadding&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;SearchBarBounds&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;MoreButtonBounds&quot;: [],&#10;  &quot;SaveButtonBounds&quot;: [],&#10;  &quot;FavoriteButtonBounds&quot;: []&#10;}"
+                   Font="inter-reg" FontSize="12.0"/>
       </Component>
     </Component>
     <Component type="ScriptButton" id="extra_click_area_btn" x="85.0" y="20.0"
@@ -83,9 +91,9 @@
     <Component type="ScriptPanel" id="Product_Logo_pnl" x="30.0" y="30.0" parentComponent="background"
                width="37.5" height="27.0"/>
     <Component type="ScriptButton" id="Product_Logo_btn" x="25.0" y="20.0" parentComponent="background"
-               width="50.0" height="45.0" radioGroup="1.0"/>
+               width="50.0" height="45.0" radioGroup="1.0" saveInPreset="0"/>
     <Component type="ScriptButton" id="Textures_btn" x="230.0" y="30.5" parentComponent="background"
-               width="100.0" height="30.0" text="Extras" radioGroup="1.0"/>
+               width="100.0" height="30.0" text="Extras" radioGroup="1.0" saveInPreset="0"/>
     <Component type="ScriptPanel" id="InputGain_VU_pnl" x="30.0" y="90.0" width="36.0"
                height="210.0" bgColour="16777215" itemColour="4934475" itemColour2="4934475"
                textColour="16777215" borderSize="0.0" borderRadius="0.0" parentComponent="background">
@@ -138,13 +146,18 @@
                  defaultValue="0.5" mouseSensitivity="1.799999952316284" useUndoManager="1"/>
     </Component>
     <Component type="ScriptPanel" id="randomize_pnl_btn" x="380.0" y="25.0"
-               parentComponent="background" width="35.0" height="35.0" allowCallbacks="Clicks &amp; Hover"/>
+               parentComponent="background" width="35.0" height="35.0" allowCallbacks="Clicks &amp; Hover"
+               popupMenuItems="presets"/>
     <Component type="ScriptPanel" id="ThemeSpinner_pnl" x="423.0" y="33.0" width="20.0"
                height="20.0" parentComponent="background"/>
     <Component type="ScriptButton" id="Tape_btn" x="130.5" y="30.0" parentComponent="background"
-               width="100.0" height="30.0" text="Tape" radioGroup="1.0"/>
+               width="100.0" height="30.0" text="Tape" radioGroup="1.0" saveInPreset="0"/>
     <Component type="ScriptButton" id="ThemeSpinner_btn" x="415.0" y="25.0"
                parentComponent="background" width="35.0" height="35.0" enableMidiLearn="0"
-               useUndoManager="1"/>
+               useUndoManager="1" saveInPreset="0"/>
+    <Component type="ScriptPanel" id="ZoomPanel" x="455.0" y="515.0" parentComponent="background"
+               width="25.0" height="25.0" allowCallbacks="Clicks, Hover &amp; Dragging"/>
   </Component>
+  <Component type="ScriptButton" id="Breitband_btn" x="10.0" y="385.0" width="20.0"
+             height="110.0" enableMidiLearn="0" saveInPreset="0"/>
 </ContentProperties>
