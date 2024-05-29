@@ -9,19 +9,21 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="Tape_Slam_knb" value="0.2300000041723251"/>
+            <Control type="ScriptSlider" id="Tape_Slam_knb" value="0.1700000017881393"/>
             <Control type="ScriptSlider" id="Tape_Low_knb" value="1.040834085586084e-17"/>
             <Control type="ScriptSlider" id="Tape_High_knb" value="1.040834085586084e-17"/>
             <Control type="ScriptSlider" id="Tape_Flutter_knb" value="0.2000000029802322"/>
             <Control type="ScriptSlider" id="Tape_Sweeten_knb" value="0.1099999994039536"/>
-            <Control type="ScriptSlider" id="Dust_knb" value="0.01999999955296516"/>
-            <Control type="ScriptSlider" id="Wear_knb" value="0.02999999932944775"/>
-            <Control type="ScriptSlider" id="Bump_knb" value="0.300000011920929"/>
+            <Control type="ScriptSlider" id="Dust_knb" value="0.05000000074505806"/>
+            <Control type="ScriptSlider" id="Wear_knb" value="0.2599999904632568"/>
+            <Control type="ScriptSlider" id="Bump_knb" value="0.0"/>
             <Control type="ScriptSlider" id="Noise_knb" value="0.09000000357627869"/>
+            <Control type="ScriptSlider" id="Degrade_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Air_knb" value="0.0"/>
             <Control type="ScriptButton" id="discount_copy_btn" value="0.0"/>
-            <Control type="ScriptSlider" id="InputGain_knb" value="-0.2999991178512573"/>
+            <Control type="ScriptSlider" id="InputGain_knb" value="8.940696716308594e-7"/>
             <Control type="ScriptSlider" id="OutputGain_knb" value="8.940696716308594e-7"/>
-            <Control type="ScriptSlider" id="Saturation_knb" value="0.1800000071525574"/>
+            <Control type="ScriptSlider" id="Saturation_knb" value="0.5"/>
             <Control type="ScriptSlider" id="Tape_knb" value="0.5"/>
             <Control type="ScriptSlider" id="Texture_knb" value="0.5"/>
           </Content>
@@ -37,7 +39,7 @@
     </Processor>
     <Processor Type="EffectChain" ID="FX" Bypassed="0">
       <ChildProcessors>
-        <Processor Type="SimpleGain" ID="InputGain" Bypassed="0" Gain="-0.2999990582466125"
+        <Processor Type="SimpleGain" ID="InputGain" Bypassed="0" Gain="1.0354386859035e-6"
                    Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
           <ChildProcessors>
             <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
@@ -56,12 +58,11 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="Hardcoded Master FX" ID="BandFX" Bypassed="0" Network="Band"
-                   Tube="0.1800000071525574" Tape="0.5" Tape_Slam="0.2300000041723251"
-                   Tape_Bump="0.300000011920929" Tape_high="0.5" Tape_low="0.5"
-                   Flutter="0.2000000029802322" Tape_noise="0.09000000357627869"
-                   Tape_Sweeten="0.1099999994039536" Textures_Mode="1.0" Textures_Wear="0.02999999932944775"
-                   Textures_Dust="0.01999999955296516" Textures_Freq="0.2300000041723251"
-                   Textures_Rez="0.5540000200271606" Textures="0.5">
+                   Tube="0.5" Tape="0.5" Tape_Slam="0.1700000017881393" Tape_Bump="0.0"
+                   Tape_high="0.5" Tape_low="0.5" Flutter="0.2000000029802322" Tape_noise="0.09000000357627869"
+                   Tape_Sweeten="0.1099999994039536" Textures_Wear="0.2599999904632568"
+                   Textures_Dust="0.05000000074505806" Textures="0.5" Degrade="0.0"
+                   Textures_Air="0.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -95,102 +96,6 @@
           </UIData>
         </Processor>
       </ChildProcessors>
-    </Processor>
-    <Processor Type="WaveSynth" ID="Waveform Generator1" Bypassed="1" Gain="0.2187761515378952"
-               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
-               OctaveTranspose1="0.0" OctaveTranspose2="0.0" Detune1="0.0" Detune2="0.0"
-               WaveForm1="3.0" WaveForm2="3.0" Pan1="0.0" Pan2="0.0" Mix="0.5"
-               EnableSecondOscillator="1.0" PulseWidth1="0.5" PulseWidth2="0.5"
-               HardSync="0.0">
-      <ChildProcessors>
-        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
-          <ChildProcessors>
-            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope1" Bypassed="0" Monophonic="0.0"
-                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
-              <ChildProcessors>
-                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
-                           Intensity="1.0">
-                  <ChildProcessors/>
-                </Processor>
-              </ChildProcessors>
-            </Processor>
-          </ChildProcessors>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="EffectChain" ID="FX" Bypassed="0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Mix Modulation" Bypassed="0" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Osc2 Pitch Modulation" Bypassed="0"
-                   Intensity="0.0">
-          <ChildProcessors/>
-        </Processor>
-      </ChildProcessors>
-      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
-    </Processor>
-    <Processor Type="SineSynth" ID="Sine Wave Generator1" Bypassed="0" Gain="0.25"
-               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
-               OctaveTranspose="2.0" SemiTones="0.0" UseFreqRatio="0.0" CoarseFreqRatio="1.0"
-               FineFreqRatio="0.0" SaturationAmount="0.0">
-      <ChildProcessors>
-        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
-          <ChildProcessors>
-            <Processor Type="Arpeggiator" ID="Arpeggiator1" Bypassed="1">
-              <ChildProcessors/>
-              <Content>
-                <Control type="ScriptButton" id="BypassButton" value="0.0"/>
-                <Control type="ScriptButton" id="ResetButton" value="0.0"/>
-                <Control type="ScriptSlider" id="NumStepSlider" value="4.0"/>
-                <Control type="ScriptSlider" id="StepReset" value="0.0"/>
-                <Control type="ScriptSlider" id="StepSkipSlider" value="1.0"/>
-                <Control type="ScriptButton" id="SortKeysButton" value="0.0"/>
-                <Control type="ScriptSlider" id="SpeedKnob" value="8.0"/>
-                <Control type="ScriptComboBox" id="SequenceComboBox" value="1.0"/>
-                <Control type="ScriptSlider" id="OctaveRange" value="0.0"/>
-                <Control type="ScriptSlider" id="Shuffle" value="0.0"/>
-                <Control type="ScriptButton" id="EnableTie" value="1.0"/>
-                <Control type="ScriptSliderPack" id="SemiToneSliderPack" value="-1.0"
-                         data="16......................."/>
-                <Control type="ScriptSliderPack" id="VelocitySliderPack" value="-1.0"
-                         data="16...f+BA..9KD..3uP..f+BA"/>
-                <Control type="ScriptSliderPack" id="LengthSliderPack" value="-1.0" data="16...fkBA..VJD..XoP..fkBA"/>
-                <Control type="ScriptComboBox" id="ChannelSelector" value="1.0"/>
-                <Control type="ScriptComboBox" id="OutputChannelSelector" value="1.0"/>
-                <Control type="ScriptComboBox" id="MPEStartChannel" value="2.0"/>
-                <Control type="ScriptComboBox" id="MPEEndChannel" value="16.0"/>
-                <Control type="ScriptButton" id="Hold" value="0.0"/>
-              </Content>
-            </Processor>
-          </ChildProcessors>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
-          <ChildProcessors>
-            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope2" Bypassed="0" Monophonic="0.0"
-                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
-              <ChildProcessors>
-                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
-                           Intensity="1.0">
-                  <ChildProcessors/>
-                </Processor>
-              </ChildProcessors>
-            </Processor>
-          </ChildProcessors>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="EffectChain" ID="FX" Bypassed="0">
-          <ChildProcessors/>
-        </Processor>
-      </ChildProcessors>
-      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
     </Processor>
   </ChildProcessors>
   <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>

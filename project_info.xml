@@ -20,7 +20,7 @@
   <RedirectSampleFolder value=""/>
   <AAXCategoryFX value="AAX_ePlugInCategory_Modulation"/>
   <VST3Category value="Mastering"/>
-  <SupportMonoFX value="1"/>
+  <SupportMonoFX value="0"/>
   <EnableMidiInputFX value="No"/>
   <EnableMidiOut value="No"/>
   <EnableSoundGeneratorsFX value="No"/>
@@ -32,8 +32,8 @@
   <ReadOnlyFactoryPresets value="No"/>
   <ForceStereoOutput value="No"/>
   <AdminPermissions value="No"/>
-  <EmbedUserPresets value="0"/>
-  <OverwriteOldUserPresets value="No"/>
+  <EmbedUserPresets value="1"/>
+  <OverwriteOldUserPresets value="1"/>
   <EnableGlobalPreprocessor value="No"/>
   <UseGlobalAppDataFolderWindows value="No"/>
   <UseGlobalAppDataFolderMacOS value="No"/>

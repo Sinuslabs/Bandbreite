@@ -26,6 +26,7 @@ include("ConfettiAnimation.js");
 include("Textures.js");
 include("Tape.js");
 include("About.js");
+include("EasterEgg.js");
 include("ZoomHandler.js");
 
 Content.makeFrontInterface(480, 540);
@@ -44,26 +45,72 @@ inline function addVisualGuide() {
 
 UserSettings.load();
 
-namespace EasterEgg {
+namespace Smoothing {
+	// Define your smoothing time in milliseconds
+	const var smoothingTime = 100;
 	
-	const var discount_lbl = Content.getComponent("discount_lbl");
-	const var code_copied_lbl = Content.getComponent("code_copied_lbl");
+	// Create an object to store the smoothed values for each knob
+	const var smoothedValues = {};
 	
-	code_copied_lbl.showControl(false);
+	// Create a queue to store the knobs that need to be smoothed
+	const var smoothingQueue = [];
 	
-	const var discount_copy = Content.getComponent("discount_copy_btn");
-	discount_copy.setControlCallback(onCopy);
+	// Create a timer to handle the smoothing
+	const var smoothingTimer = Engine.createTimerObject();
 	
-	discount_copy.setLocalLookAndFeel(Styles.LAF_displayButton);
+	// Set up the exponential smoothing function
+	smoothingTimer.setTimerCallback(function()
+	{
+	    for (i = 0; i < smoothingQueue.length; i++)
+	    {
+	        // Get the current knob id from the queue
+	        var knobId = smoothingQueue[i];
+	        var knob = Content.getComponent(knobId);
+	        
+	        // Get the current knob value
+	        var targetValue = knob.getValue();
+	        
+	        // Initialize the smoothed value if not already done
+	        if (isDefined(smoothedValues[knobId]))
+	            smoothedValues[knobId] = targetValue;
+	        
+	        // Calculate the smoothing factor
+	        var smoothingFactor = 44100 * (smoothingTime / 1000);
+	        
+	        // Apply exponential smoothing
+	        var delta = targetValue - smoothedValues[knobId];
+	        smoothedValues[knobId] += delta * (1.0 - Math.exp(-1.0 / smoothingFactor));
+	        
+	        
+	        // Check if the smoothed value is close enough to the target value
+	        if (Math.abs(delta) < 0.001)
+	        {
+	            // Remove the knob id from the queue
+	            smoothingQueue.remove(i);
+	            i--; // Adjust the index since we removed an item from the queue
+	        }
+	    }
+	    
+	    // Stop the timer if the queue is empty
+	    if (smoothingQueue.length == 0)
+	        smoothingTimer.stopTimer();
+	});
 	
-	inline function onCopy(component, value){
-		if(value) {
-			code_copied_lbl.showControl(true);
-			Engine.copyToClipboard(discount_lbl.get('text'));
-		}
+	// Inline function to handle knob changes
+	inline function smooth(component, value)
+	{
+	    local knobId = component.getId();
+	    if (smoothingQueue.indexOf(knobId) == -1)
+	    {
+	      //  smoothingQueue.push(knobId);
+	    }
+	    if (!smoothingTimer.isTimerRunning())
+	       // smoothingTimer.startTimer(500);
 	}
-	
+
+
 }
+
 
 function onNoteOn()
 {

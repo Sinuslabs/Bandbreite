@@ -19,52 +19,11 @@ namespace Main_Controls {
 	Breitband_btn.setLocalLookAndFeel(LAF_breitband_btn);
 	
 	Breitband_btn.setControlCallback(onBreitband);
-	
-	inline function onBreitband(component, value) {
-		Header.Product_Logo_btn.setValue(1);
-		Header.Product_Logo_btn.changed();
-	}
-	
-	inline function breitband_btn_laf(g, obj) {
-		local a = obj.area;
-		g.rotate(Math.toRadians(90), [a[2] / 2, a[3] / 2]);
-		
-		a = [
-			-55,
-			a[1],
-			125,
-			a[3]
-		];
-		
-		g.setColour(Theme.THEME.Colors.UI.background);
-		g.fillRect(a);
-
-		
-		g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
-				
-		if (obj.over) {
-			g.setColour(Theme.THEME.Colors.UI.on_background_var);
-		}
-		
-		if (obj.value) {
-			g.setColour(Theme.THEME.Colors.UI.on_background_var);
-		}	
-	
-		g.setFont(Theme.SemiBold, 20);
-		g.drawAlignedText('BREITBAND', a, 'centred');
-		
-		g.addNoise({
-				alpha: 0.04,
-				monochromatic: false,
-				scaleFactor: 1.7,
-				area: a
-			});		
-	}
-	
 
 	for (knb in MainControls) {
 		knb.setControlCallback(onMainControl);
 		knb.setLocalLookAndFeel(Styles.LAF_Knob);
+		knb.set('stepSize', 0.001);
 	}
 
 	for (knb in Gains) {
@@ -72,8 +31,12 @@ namespace Main_Controls {
 		knb.setLocalLookAndFeel(VuMeterSlider.LAF_VU_Slider);
 	}
 	
+	inline function onBreitband(component, value) {
+		Header.Product_Logo_btn.setValue(1);
+		Header.Product_Logo_btn.changed();
+	}
+	
 	inline function onMainControl(component, value) {
-
 		switch (component.getId()) {
 			case 'Saturation_knb':
 				FX.BandFX.setAttribute(FX.BandFX.Tube, value);
@@ -114,6 +77,42 @@ namespace Main_Controls {
 		g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
 		g.drawRoundedRectangle(a, Primitives.BorderRadius.md, Primitives.BorderSize.md);
 
+	}
+	
+	inline function breitband_btn_laf(g, obj) {
+		local a = obj.area;
+		g.rotate(Math.toRadians(90), [a[2] / 2, a[3] / 2]);
+		
+		a = [
+			-55,
+			a[1],
+			125,
+			a[3]
+		];
+		
+		g.setColour(Theme.THEME.Colors.UI.background);
+		g.fillRect(a);
+	
+		
+		g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
+				
+		if (obj.over) {
+			g.setColour(Theme.THEME.Colors.UI.on_background_var);
+		}
+		
+		if (obj.value) {
+			g.setColour(Theme.THEME.Colors.UI.on_background_var);
+		}	
+	
+		g.setFont(Theme.SemiBold, 20);
+		g.drawAlignedText('BREITBAND', a, 'centred');
+		
+		g.addNoise({
+				alpha: 0.04,
+				monochromatic: false,
+				scaleFactor: 1.7,
+				area: a
+			});		
 	}
 
 }

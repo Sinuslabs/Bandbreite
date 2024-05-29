@@ -161,36 +161,176 @@
           </Node>
           <Node ID="wet_path1" FactoryPath="container.chain" Bypassed="0">
             <Nodes>
-              <Node ID="branch1" FactoryPath="container.branch" Bypassed="0" ShowParameters="1">
+              <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
                 <Nodes>
-                  <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
-                    <Nodes>
-                      <Node ID="GrooveWear" FactoryPath="project.GrooveWear" Bypassed="0">
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Wear" Automated="1"/>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Dry/Wet" Value="1.0"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="TapeDust" FactoryPath="project.TapeDust" Bypassed="0">
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Dust" Automated="1"/>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Dry/Wet" Value="1.0"/>
-                        </Parameters>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                  <Node ID="Pockey2" FactoryPath="project.Pockey2" Bypassed="0">
+                  <Node ID="GrooveWear" FactoryPath="project.GrooveWear" Bypassed="0">
                     <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="DeFreq" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="DeRez" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Wear" Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Dry/Wet" Value="1.0"/>
                     </Parameters>
                   </Node>
+                  <Node ID="TapeDust" FactoryPath="project.TapeDust" Bypassed="0">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Dust" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Dry/Wet" Value="1.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="sampleandhold" FactoryPath="fx.sampleandhold" Bypassed="0">
+                    <Parameters>
+                      <Parameter MinValue="1.0" MaxValue="30.0" StepSize="0.01" ID="Counter" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="dry_wet1" FactoryPath="container.split" ShowParameters="1"
+                        NodeColour="4287588249" Bypassed="0">
+                    <Nodes>
+                      <Node ID="dry_path" FactoryPath="container.chain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="dry_wet_mixer" FactoryPath="control.xfader" Bypassed="0"
+                                NodeColour="4287588249">
+                            <Properties>
+                              <Property ID="NumParameters" Value="2"/>
+                              <Property ID="Mode" Value="Cosine Half"/>
+                            </Properties>
+                            <SwitchTargets>
+                              <SwitchTarget>
+                                <Connections>
+                                  <Connection NodeId="dry_gain" ParameterId="Gain"/>
+                                </Connections>
+                              </SwitchTarget>
+                              <SwitchTarget>
+                                <Connections>
+                                  <Connection NodeId="wet_gain" ParameterId="Gain"/>
+                                </Connections>
+                              </SwitchTarget>
+                            </SwitchTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="dry_gain" FactoryPath="core.gain" Bypassed="0" NodeColour="4287588249"
+                                Folded="1">
+                            <Parameters>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="wet_path" FactoryPath="container.chain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0">
+                            <ModulationTargets>
+                              <Connection NodeId="reverb" ParameterId="Width"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.7419357910156249"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Maximum" Value="0.90616650390625"/>
+                              <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                         ID="Skew" Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="minmax1" FactoryPath="control.minmax" Bypassed="0">
+                            <ModulationTargets>
+                              <Connection NodeId="reverb" ParameterId="Size"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.603553955078125"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Maximum" Value="0.728869140625"/>
+                              <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                         ID="Skew" Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="mid_side1" FactoryPath="container.chain" Bypassed="0">
+                            <Nodes>
+                              <Node ID="decoder" FactoryPath="routing.ms_decode" Bypassed="0">
+                                <Parameters/>
+                              </Node>
+                              <Node ID="ms_splitter" FactoryPath="container.multi" Bypassed="0">
+                                <Nodes>
+                                  <Node ID="mid_chain" FactoryPath="container.chain" Bypassed="0">
+                                    <Nodes>
+                                      <Node ID="mid_gain" FactoryPath="math.mul" Bypassed="0">
+                                        <Parameters>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+                                        </Parameters>
+                                      </Node>
+                                    </Nodes>
+                                    <Parameters/>
+                                  </Node>
+                                  <Node ID="side_chain" FactoryPath="container.chain" Bypassed="0">
+                                    <Nodes>
+                                      <Node ID="side_gain" FactoryPath="math.mul" Bypassed="0">
+                                        <Parameters>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+                                        </Parameters>
+                                      </Node>
+                                      <Node ID="reverb" FactoryPath="fx.reverb" Bypassed="0">
+                                        <Parameters>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Damping" Value="0.1482434082031249"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Width" Automated="1"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Size" Automated="1"/>
+                                        </Parameters>
+                                      </Node>
+                                    </Nodes>
+                                    <Parameters/>
+                                  </Node>
+                                </Nodes>
+                                <Parameters/>
+                              </Node>
+                              <Node ID="encoder" FactoryPath="routing.ms_encode" Bypassed="0">
+                                <Parameters/>
+                              </Node>
+                            </Nodes>
+                            <Parameters/>
+                          </Node>
+                          <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+                            <Parameters>
+                              <Parameter MinValue="-100.0" MaxValue="3.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="Gain" Value="0.9000015035271645"/>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="wet_gain" FactoryPath="core.gain" Bypassed="0" NodeColour="4287588249"
+                                Folded="1">
+                            <Parameters>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="DryWet" Automated="1">
+                        <Connections>
+                          <Connection NodeId="dry_wet_mixer" ParameterId="Value"/>
+                          <Connection NodeId="minmax" ParameterId="Value"/>
+                          <Connection NodeId="minmax1" ParameterId="Value"/>
+                        </Connections>
+                      </Parameter>
+                    </Parameters>
+                  </Node>
                 </Nodes>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1" StepSize="1.0" ID="Index" Automated="1"/>
-                </Parameters>
+                <Parameters/>
               </Node>
               <Node ID="wet_gain1" FactoryPath="core.gain" Bypassed="0" NodeColour="4288256103"
                     Folded="1">
@@ -220,33 +360,33 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Tube" MinValue="0.0" MaxValue="1.0" Value="0.0">
+      <Parameter ID="Tube" MinValue="0.0" MaxValue="1.0" Value="0.1989603576660156">
         <Connections>
           <Connection NodeId="Tube2" ParameterId="Tube"/>
           <Connection NodeId="Tube3" ParameterId="Tube"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="Tape" MinValue="0.0" MaxValue="1.0" Value="0.4975709228515625">
         <Connections>
           <Connection NodeId="dry_wet3" ParameterId="DryWet"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape_Slam" MinValue="0.0" MaxValue="1.0" Value="0.0">
+      <Parameter ID="Tape_Slam" MinValue="0.0" MaxValue="1.0" Value="0.33669873046875">
         <Connections>
           <Connection NodeId="Tape" ParameterId="Slam"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape_Bump" MinValue="0.0" MaxValue="1.0" Value="0.6173681640624999">
+      <Parameter ID="Tape_Bump" MinValue="0.0" MaxValue="1.0" Value="0.1895795898437499">
         <Connections>
           <Connection NodeId="Tape" ParameterId="Bump"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape_high" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="Tape_high" MinValue="0.0" MaxValue="1.0" Value="0.7499030761718749">
         <Connections>
           <Connection NodeId="IronOxide5" ParameterId="Tape High"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape_low" MinValue="0.0" MaxValue="1.0" Value="0.5591793823242187">
+      <Parameter ID="Tape_low" MinValue="0.0" MaxValue="1.0" Value="0.5042237854003906">
         <Connections>
           <Connection NodeId="low_invert" ParameterId="Value"/>
         </Connections>
@@ -262,18 +402,12 @@
           <Connection NodeId="IronOxide5" ParameterId="Noise"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape_Sweeten" MinValue="0.0" MaxValue="1.0" Value="0.000283935546875">
+      <Parameter ID="Tape_Sweeten" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="Sweeten" ParameterId="Sweeten"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Textures_Mode" MinValue="0.0" MaxValue="1.0" StepSize="1.0"
-                 Value="1.0">
-        <Connections>
-          <Connection NodeId="branch1" ParameterId="Index"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="Textures_Wear" MinValue="0.0" MaxValue="1.0" Value="0.5037136230468749">
+      <Parameter ID="Textures_Wear" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="GrooveWear" ParameterId="Wear"/>
         </Connections>
@@ -283,19 +417,19 @@
           <Connection NodeId="TapeDust" ParameterId="Dust"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Textures_Freq" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections>
-          <Connection NodeId="Pockey2" ParameterId="DeFreq"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="Textures_Rez" MinValue="0.0" MaxValue="1.0" Value="0.7227353515625">
-        <Connections>
-          <Connection NodeId="Pockey2" ParameterId="DeRez"/>
-        </Connections>
-      </Parameter>
       <Parameter ID="Textures" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="dry_wet2" ParameterId="DryWet"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Degrade" MinValue="1.0" MaxValue="30.0" StepSize="0.01" Value="1.0">
+        <Connections>
+          <Connection NodeId="sampleandhold" ParameterId="Counter"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Textures_Air" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="dry_wet1" ParameterId="DryWet"/>
         </Connections>
       </Parameter>
     </Parameters>

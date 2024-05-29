@@ -40,22 +40,30 @@
                  width="435.0" height="315.0">
         <Component type="ScriptPanel" id="Textures_Container" x="39.0" y="75.0"
                    width="360.0" height="202.5" parentComponent="Textures_Route">
-          <Component type="ScriptSlider" id="Dust_knb" x="84.0" y="98.0" parentComponent="Textures_Container"
-                     width="90" height="90" text="Dust" mode="NormalizedPercentage"
+          <Component type="ScriptSlider" id="Dust_knb" x="124.0" y="98.0" parentComponent="Textures_Container"
+                     width="90.0" height="90.0" text="Dust" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Dust"
-                     isPluginParameter="1"/>
-          <Component type="ScriptSlider" id="Wear_knb" x="184.0" y="98.0" parentComponent="Textures_Container"
+                     isPluginParameter="1" stepSize="0.001"/>
+          <Component type="ScriptSlider" id="Wear_knb" x="224.0" y="98.0" parentComponent="Textures_Container"
                      width="90.0" height="90.0" text="Wear" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Wear"
-                     isPluginParameter="1"/>
-          <Component type="ScriptSlider" id="Bump_knb" x="184.0" y="0.0" parentComponent="Textures_Container"
+                     isPluginParameter="1" stepSize="0.001"/>
+          <Component type="ScriptSlider" id="Bump_knb" x="224.0" y="0.0" parentComponent="Textures_Container"
                      width="90.0" height="90.0" text="Bump" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Bump"
-                     isPluginParameter="1"/>
-          <Component type="ScriptSlider" id="Noise_knb" x="84.0" y="0.0" parentComponent="Textures_Container"
+                     isPluginParameter="1" stepSize="0.001"/>
+          <Component type="ScriptSlider" id="Noise_knb" x="124.0" y="0.0" parentComponent="Textures_Container"
                      width="90.0" height="90.0" text="Noise" mode="NormalizedPercentage"
                      suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Noise"
-                     isPluginParameter="1"/>
+                     isPluginParameter="1" stepSize="0.001"/>
+          <Component type="ScriptSlider" id="Degrade_knb" x="24.0" y="3.0" parentComponent="Textures_Container"
+                     width="90.0" height="90.0" text="Degrade" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Noise"
+                     isPluginParameter="1" stepSize="0.001"/>
+          <Component type="ScriptSlider" id="Air_knb" x="24.0" y="98.0" parentComponent="Textures_Container"
+                     width="90.0" height="90.0" text="Air" mode="NormalizedPercentage"
+                     suffix="%" middlePosition="0.5" useUndoManager="1" pluginParameterName="Dust"
+                     isPluginParameter="1" stepSize="0.001"/>
         </Component>
       </Component>
       <Component type="ScriptPanel" id="About_Route" x="7.5" y="7.5" parentComponent="display"
@@ -82,10 +90,10 @@
                    text="FROM BERLIN WITH &lt;3" width="165.0" height="22.5" fontName="inter-reg"
                    fontSize="10.0" editable="0"/>
       </Component>
-      <Component type="ScriptPanel" id="PresetBrowser_Route" x="0" y="0" width="450"
-                 height="330" parentComponent="display" visible="0">
+      <Component type="ScriptPanel" id="PresetBrowser_Route" x="0.0" y="0.0" width="450.0"
+                 height="330.0" parentComponent="display" visible="0">
         <Component type="ScriptFloatingTile" id="PresetBrowser" x="55.0" y="65.0"
-                   width="340" height="260" parentComponent="PresetBrowser_Route"
+                   width="340.0" height="260.0" parentComponent="PresetBrowser_Route"
                    ContentType="PresetBrowser" bgColour="4143972352" itemColour="4294967295"
                    itemColour2="0" Data="{&#10;  &quot;ShowSaveButton&quot;: true,&#10;  &quot;ShowExpansionsAsColumn&quot;: false,&#10;  &quot;ShowFolderButton&quot;: true,&#10;  &quot;ShowNotes&quot;: false,&#10;  &quot;ShowEditButtons&quot;: true,&#10;  &quot;EditButtonOffset&quot;: 10,&#10;  &quot;ShowAddButton&quot;: true,&#10;  &quot;ShowRenameButton&quot;: true,&#10;  &quot;ShowDeleteButton&quot;: true,&#10;  &quot;ShowFavoriteIcon&quot;: false,&#10;  &quot;ButtonsInsideBorder&quot;: false,&#10;  &quot;NumColumns&quot;: 1,&#10;  &quot;ColumnWidthRatio&quot;: [&#10;    0.3333333333333333,&#10;    0.3333333333333333,&#10;    0.3333333333333333&#10;  ],&#10;  &quot;ListAreaOffset&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;ColumnRowPadding&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;SearchBarBounds&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;MoreButtonBounds&quot;: [],&#10;  &quot;SaveButtonBounds&quot;: [],&#10;  &quot;FavoriteButtonBounds&quot;: []&#10;}"
                    Font="inter-reg" FontSize="12.0"/>
@@ -93,29 +101,29 @@
       <Component type="ScriptPanel" id="Easteregg_Route" x="7.5" y="7.5" parentComponent="display"
                  width="435.0" height="315.0" visible="0">
         <Component type="ScriptPanel" id="Confetti_pnl" x="93.0" y="53.0" parentComponent="Easteregg_Route"
-                   width="260" height="260">
+                   width="260.0" height="260.0">
           <Component type="ScriptButton" id="discount_copy_btn" x="65.0" y="160.0"
-                     parentComponent="Confetti_pnl" width="125" height="35" text="Copy Discount"
+                     parentComponent="Confetti_pnl" width="125.0" height="35.0" text="Copy Discount"
                      isMomentary="1" enableMidiLearn="0"/>
-          <Component type="ScriptLabel" id="Wowsers_lb" x="65" y="10" parentComponent="Confetti_pnl"
+          <Component type="ScriptLabel" id="Wowsers_lb" x="65.0" y="10.0" parentComponent="Confetti_pnl"
                      text="Wowsers!" fontName="inter-semi" fontSize="18.0" editable="0"
                      textColour="4294507516" itemColour2="1118481"/>
-          <Component type="ScriptLabel" id="get_15_off_lb" x="30" y="30" parentComponent="Confetti_pnl"
+          <Component type="ScriptLabel" id="get_15_off_lb" x="30.0" y="30.0" parentComponent="Confetti_pnl"
                      text="Explorers get 15% off" fontName="inter-reg" fontSize="18.0"
-                     width="200" height="40" editable="0" textColour="4294507516"
+                     width="200.0" height="40.0" editable="0" textColour="4294507516"
                      itemColour2="1118481"/>
           <Component type="ScriptLabel" id="discount_lbl" x="25.0" y="90.0" parentComponent="Confetti_pnl"
-                     text="osterhase" fontName="inter-semi" fontSize="24.0" width="200"
-                     height="40" editable="0" textColour="4294507516" itemColour2="1118481"/>
+                     text="osterhase" fontName="inter-semi" fontSize="24.0" width="200.0"
+                     height="40.0" editable="0" textColour="4294507516" itemColour2="1118481"/>
           <Component type="ScriptLabel" id="code_copied_lbl" x="65.0" y="195.0" parentComponent="Confetti_pnl"
                      text="code copied" fontName="inter-reg" fontSize="14.0" editable="0"
-                     textColour="4294507516" itemColour2="1118481" width="125" height="30"
+                     textColour="4294507516" itemColour2="1118481" width="125.0" height="30.0"
                      visible="0"/>
         </Component>
       </Component>
     </Component>
     <Component type="ScriptButton" id="extra_click_area_btn" x="85.0" y="20.0"
-               parentComponent="background" width="295" height="50" enableMidiLearn="0"
+               parentComponent="background" width="295.0" height="50.0" enableMidiLearn="0"
                isMomentary="1" saveInPreset="0"/>
     <Component type="ScriptPanel" id="Product_Logo_pnl" x="30.0" y="30.0" parentComponent="background"
                width="37.5" height="27.0"/>
@@ -166,17 +174,17 @@
                  height="120.0" parentComponent="MainPanel_Controls_Container"
                  text="Tube" mode="NormalizedPercentage" suffix="%" middlePosition="0.5"
                  defaultValue="0.5" mouseSensitivity="1.799999952316284" useUndoManager="1"
-                 pluginParameterName="Tube" isPluginParameter="1"/>
+                 pluginParameterName="Tube" isPluginParameter="1" stepSize="0.001"/>
       <Component type="ScriptSlider" id="Tape_knb" x="190.0" y="25.0" width="90.0"
                  height="120.0" parentComponent="MainPanel_Controls_Container"
                  mode="NormalizedPercentage" suffix="%" middlePosition="0.5" text="Tape"
                  defaultValue="0.5" mouseSensitivity="1.799999952316284" useUndoManager="1"
-                 pluginParameterName="Tape" isPluginParameter="1"/>
+                 pluginParameterName="Tape" isPluginParameter="1" stepSize="0.001"/>
       <Component type="ScriptSlider" id="Texture_knb" x="310.0" y="25.0" width="90.0"
                  height="120.0" parentComponent="MainPanel_Controls_Container"
                  text="Texture" mode="NormalizedPercentage" suffix="%" middlePosition="0.5"
                  defaultValue="0.5" mouseSensitivity="1.799999952316284" useUndoManager="1"
-                 pluginParameterName="Texture" isPluginParameter="1"/>
+                 pluginParameterName="Texture" isPluginParameter="1" stepSize="0.001"/>
     </Component>
     <Component type="ScriptPanel" id="randomize_pnl_btn" x="380.0" y="25.0"
                parentComponent="background" width="35.0" height="35.0" allowCallbacks="Clicks &amp; Hover"

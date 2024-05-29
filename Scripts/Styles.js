@@ -29,7 +29,7 @@ namespace Styles {
 	inline function displayBarsLAF(g, obj) {
 		
 		local a = obj.area;
-		local BAR_HEIGHT = 0.7;
+		local BAR_HEIGHT = 1;
 		local TEXT_HEIGHT = 1 - BAR_HEIGHT;
 		local BORDER_RADIUS = 1;
 		local BORDER_SIZE = 2;
@@ -46,14 +46,36 @@ namespace Styles {
 			container_area[3] * value
 		];
 		
-		g.setColour(Theme.THEME.Colors.Display.on_display);
+		// g.setColour(Colours.white);
+		// g.drawAlignedText('SEND 1', a, 'centred');
+		
+		//g.beginBlendLayer('Difference', 1);
+		//	g.setColour(Colours.white);
+		//	g.fillRect([
+		//		a[0],
+		//		a[1],
+		//		a[2] - 65,
+		//		a[3],
+		//	]);
+			
+		
+		// g.endLayer();
+		
+
+		g.setColour(Theme.THEME.Colors.Display.on_display_var);
 		g.drawRoundedRectangle(container_area, BORDER_RADIUS, BORDER_SIZE);
 		g.fillRect(container_area);
+		
+		g.beginBlendLayer('Difference', 0);
+		g.setColour(Theme.THEME.Colors.Effect.blue);
+		g.fillRoundedRectangle([0,0, 10, 10], 2);
+		g.endLayer();
+		
+		g.setColour(Colours.white);
+		g.fillEllipse([0,0, 20, 20]);
+		
 		g.setFont(Theme.Regular, 12);
 		g.drawAlignedText(obj.text, text_area, 'centred');
-		
-		g.setColour(Theme.THEME.Colors.Display.on_display_contrast);
-		g.fillRoundedRectangle(bar_area, 2);
 	}
 	
 	const var LAF_DisplayTextKnob = Content.createLocalLookAndFeel();	
@@ -88,6 +110,16 @@ namespace Styles {
 			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
 			
 			g.setColour(Theme.THEME.Colors.Display.on_display);
+		}
+		
+		if (obj.text === 'Degrade') {
+			g.setColour(Theme.THEME.Colors.Effect.lightBlue);
+			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
+		}
+		
+		if (obj.text === 'Air') {
+			g.setColour(Theme.THEME.Colors.Effect.blue);
+			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
 		}
 		
 		if (obj.text === 'Low' || obj.text === 'High') {
@@ -320,7 +352,7 @@ namespace Styles {
 				TEXT_COLOUR = Theme.THEME.Colors.Knob.knob_accent_disabled;
 			}
 			
-			if (obj.hover) {
+			if (obj.hover || obj.clicked) {
 				text = obj.valueAsText;
 			}
 			
