@@ -16,17 +16,45 @@ namespace Header {
 	extra_click_area_btn.setLocalLookAndFeel(LAF_hiddenBTN);
 	extra_click_area_btn.setControlCallback(onBackToTape);
 	
-	const var Product_Logo_btn = Content.getComponent("Product_Logo_btn");
-	const var Textures_btn = Content.getComponent("Textures_btn");
-	const var Tape_btn = Content.getComponent("Tape_btn");
-	
+	const var Product_Logo_btn = Content.getComponent("Product_Logo_btn");	
 	const var ThemeSpinner_btn = Content.getComponent("ThemeSpinner_btn");
-
-	Textures_btn.setControlCallback(onTextures);
-	Textures_btn.setLocalLookAndFeel(Styles.LAF_textButton);
+	const var Bypass_btn = Content.getComponent("Bypass_btn");
+	const var Hot_btn = Content.getComponent("Hot_btn");
 	
-	Tape_btn.setControlCallback(onTape);
-	Tape_btn.setLocalLookAndFeel(Styles.LAF_textButton);
+	Bypass_btn.setLocalLookAndFeel(Styles.LAF_BypasButton);
+	Bypass_btn.setControlCallback(onBypass);
+	
+	Hot_btn.setLocalLookAndFeel(Styles.LAF_displayIconButton);
+	Hot_btn.setControlCallback(onHot);
+	
+	inline function onHot(component, value) {
+		if (value) {
+			component.set('text', 'scream');	
+		} else {
+			component.set('text', 'worried');
+		}
+	
+		BandFX.setAttribute(BandFX.Hot, value);
+	}
+	
+	inline function onBypass(component, value) {
+		
+		Main_Controls.Container.set('enabled', !value);
+		Tape.Tape_Control_Container.set('enabled', !value);
+		Hot_btn.set('enabled', !value);
+		TapeAnimation.TapeAnimation_wrapper_pnl.set('visible', !value);
+		TapeAnimation.AnimationPanel_overlay.set('visible', value);
+		Main_Controls.Gains[0].set('enabled', !value);
+		Main_Controls.Gains[1].set('enabled', !value);
+		if (value) {
+			TapeAnimation.AnimationPanel.stopTimer();
+		} else {
+			TapeAnimation.AnimationPanel.startTimer(TapeAnimation.timer);
+		}
+		InputGain.setBypassed(value);
+		BandFX.setBypassed(value);
+		OutGain.setBypassed(value);
+	}
 
 	// sync to theme
 	ThemeSpinner_btn.setValue(0);
@@ -43,8 +71,7 @@ namespace Header {
 	
 	inline function onBackToTape(component, value) {
 		if (value) {
-			Tape_btn.setValue(1);
-			Tape_btn.changed();
+			Router.goTo('Tape');
 		}
 	}
 	
@@ -52,27 +79,13 @@ namespace Header {
 		
 		if (Router.currentRoute === 'About') {
 			Breitband_btn.setValue(0);
-			Tape_btn.setValue(1);
-			Tape_btn.changed();
+			Router.goTo('Tape');
 			return;
 		}
 		
 		Breitband_btn.setValue(1);
 		Router.goTo('About');
 	}
-	
-	inline function onTextures(component, value) {
-		if (value) {
-			Router.goTo('Textures');
-		}
-	}
-	
-	inline function onTape(component, value) {
-		if (value) {
-			Router.goTo('Tape');
-		}
-	}
-	
 	
 	reg clickCounter = 0;
 	const var clickThreshold = 5; // Number of clicks required to trigger custom function
@@ -104,8 +117,6 @@ namespace Header {
 			ConfettiAnimation.burstAnimation();			
 			easteregg_timer.stopTimer();
 			clickCounter = 0;
-			Tape_btn.setValue(0);
-			Textures_btn.setValue(0);
 			Product_Logo_btn.setValue(0);
 			Breitband_btn.setValue(0);
 		}
@@ -144,7 +155,7 @@ namespace Header {
 		}	
 	
 		g.setFont(Theme.SemiBold, 20);
-		g.drawAlignedText('BREITBAND', a, 'centred');
+		g.drawAlignedText('BANDBREITE', a, 'centred');
 		
 		g.addNoise({
 				alpha: 0.04,

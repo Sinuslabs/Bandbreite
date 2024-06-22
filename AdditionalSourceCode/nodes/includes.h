@@ -16,6 +16,7 @@
 #include "IronOxide5.h"
 #include "PocketVerbs.h"
 #include "Pockey2.h"
+#include "SoftClipper.h"
 #include "Sweeten.h"
 #include "Tape.h"
 #include "TapeDust.h"

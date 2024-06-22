@@ -8,22 +8,30 @@ namespace LogoAnimation {
 	
 	reg frame = 0;
 	const frames = 89;
-	const speed = 1;
+	reg speed = 1;
 	const timer = 30;
 	
 	reg easingFactor = 0.05;
 	reg isAnimating = false;
 	
+	const var logoTimer = Engine.createTimerObject();
+	logoTimer.startTimer(400);
+	logoTimer.setTimerCallback(onTimer);
+	
+	inline function onTimer() {
+		local level = (InputGain.getCurrentLevel(0) + InputGain.getCurrentLevel(1)) / 2;
+		if (level > 0.002 && level <= 1.0) {
+			startAnimation();
+		} else {
+			LogoAnimation.stopAnimation();
+		}
+		
+	}
+	
 	inline function nextFrame() {
-	    if (!isAnimating && speed <= 0) {
+	    if (!isAnimating) {
 	        AnimationPanel.stopTimer();
 	        return;
-	    }
-	    
-	    if (isAnimating && speed < maxSpeed) {
-	        speed += easingFactor;
-	    } else if (!isAnimating && speed > 0) {
-	        speed -= easingFactor;
 	    }
 	    
 	    AnimationPanel.setAnimationFrame(frame);
@@ -33,7 +41,7 @@ namespace LogoAnimation {
 	
 	inline function startAnimation() {
 	    isAnimating = true;
-	    AnimationPanel.startTimer(timerInterval);
+	    AnimationPanel.startTimer(timer);
 	}
 	
 	inline function stopAnimation() {

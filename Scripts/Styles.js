@@ -1,12 +1,37 @@
 namespace Styles {
 	
-
 	const LAF_displayIconButton = Content.createLocalLookAndFeel();
 	LAF_displayIconButton.registerFunction("drawToggleButton", displayIconButtonLAF);
 	inline function displayIconButtonLAF(g, obj) {
 		local a = obj.area;
 		local iconArea = StyleHelpers.addPadding(a, 0);
-		local SIZE = 15;
+		local SIZE = 18;
+		
+		local width = a[2];
+		local height = a[3];
+		
+		iconArea = StyleHelpers.withSizeKeepingCentre(a, 18, 18);
+		g.setColour(Theme.THEME.Colors.Display.on_display_var);
+		
+		obj.over && g.setColour(Theme.THEME.Colors.Display.on_display);
+		
+		if (!obj.enabled) {
+			g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
+		}
+		
+		if (obj.text === 'youtube') {
+			g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE + 20, SIZE]);
+		} else {
+			g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE]);					
+		}
+	}
+	
+	const LAF_displayIconSocialsButton = Content.createLocalLookAndFeel();
+	LAF_displayIconSocialsButton.registerFunction("drawToggleButton", displayIconSocialsButtonLAF);
+	inline function displayIconSocialsButtonLAF(g, obj) {
+		local a = obj.area;
+		local iconArea = StyleHelpers.addPadding(a, 0);
+		local SIZE = 25;
 		
 		local width = a[2];
 		local height = a[3];
@@ -14,13 +39,17 @@ namespace Styles {
 		iconArea = StyleHelpers.withSizeKeepingCentre(a, 15, 15);
 		g.setColour(Theme.THEME.Colors.Display.on_display_var);
 		
-		obj.value && g.setColour(Theme.THEME.Colors.Display.on_display);
+		obj.over && g.setColour(Theme.THEME.Colors.Display.on_display);
 		
 		if (obj.text.contains('$outline')) {
 			obj.text = obj.text.replace('$outline', '');
 			g.drawPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE], 0.5);								
 		} else {
-			g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE]);	
+			if (obj.text === 'youtube') {
+				g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE + 5, SIZE]);
+			} else {
+				g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE]);					
+			}
 		}
 	}
 
@@ -46,22 +75,6 @@ namespace Styles {
 			container_area[3] * value
 		];
 		
-		// g.setColour(Colours.white);
-		// g.drawAlignedText('SEND 1', a, 'centred');
-		
-		//g.beginBlendLayer('Difference', 1);
-		//	g.setColour(Colours.white);
-		//	g.fillRect([
-		//		a[0],
-		//		a[1],
-		//		a[2] - 65,
-		//		a[3],
-		//	]);
-			
-		
-		// g.endLayer();
-		
-
 		g.setColour(Theme.THEME.Colors.Display.on_display_var);
 		g.drawRoundedRectangle(container_area, BORDER_RADIUS, BORDER_SIZE);
 		g.fillRect(container_area);
@@ -100,7 +113,14 @@ namespace Styles {
 			a[3] * 0.4
 		];
 		
-		local valueText = obj.valueAsText;		
+		local valueText = obj.valueAsText;
+		
+		if (valueText === '0%') {
+			if (obj.value < 0) {
+				valueText = '-0.5%';
+			}
+		}
+			
 		local textA = StyleHelpers.addPadding(a, Primitives.Spacings.md);
 		
 		g.setColour(Theme.THEME.Colors.Display.on_display_var);
@@ -108,18 +128,7 @@ namespace Styles {
 			
 			g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
 			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
-			
 			g.setColour(Theme.THEME.Colors.Display.on_display);
-		}
-		
-		if (obj.text === 'Degrade') {
-			g.setColour(Theme.THEME.Colors.Effect.lightBlue);
-			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
-		}
-		
-		if (obj.text === 'Air') {
-			g.setColour(Theme.THEME.Colors.Effect.blue);
-			g.drawRoundedRectangle(a, Primitives.BorderRadius.lg, Primitives.BorderSize.sm);
 		}
 		
 		if (obj.text === 'Low' || obj.text === 'High') {
@@ -127,6 +136,11 @@ namespace Styles {
 				valueText = '+' + valueText;
 			}
 		}
+		
+		if (!obj.enabled) {
+			g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
+		};
+		
 		
 		g.setFont(Theme.SemiBold, 23);
 		g.drawAlignedText(valueText, upper_a, 'centred');
@@ -337,7 +351,7 @@ namespace Styles {
 			var INDICATOR_COLOUR = Theme.THEME.Colors.Knob.knob_accent;
 			var SOCKEL = Theme.THEME.Colors.Knob.knob_base;
 			var BODY = Theme.THEME.Colors.Knob.knob_body;
-			var BORDER_COLOUR = Theme.THEME.Colors.Knob.knob_outline;
+			var BORDER_COLOUR = Theme.THEME.Colors.UI.surface_darkest;
 			var TEXT_COLOUR = Theme.THEME.Colors.Knob.knob_accent;
 			var SHADOW_COLOUR = Colours.withAlpha(Colours.black, 0.25);
 			var TAPE_SOCKEL = Theme.THEME.Colors.Display.on_display_contrast;
@@ -346,7 +360,6 @@ namespace Styles {
 				ARC_COLOUR = Theme.THEME.Colors.Knob.knob_accent_disabled;
 				INDICATOR_COLOUR = Theme.THEME.Colors.Knob.knob_accent_disabled;
 				BODY = Theme.THEME.Colors.Knob.knob_body_disabled;
-				LOWER_GRADIENT = Theme.THEME.Colors.Knob.knob_body_disabled;
 				BORDER_COLOUR = Theme.THEME.Colors.Knob.knob_outline;
 				SHADOW_COLOUR = Colours.withAlpha(Colours.black, 0);
 				TEXT_COLOUR = Theme.THEME.Colors.Knob.knob_accent_disabled;
@@ -359,18 +372,28 @@ namespace Styles {
 			g.setColour(SOCKEL);
 			
 			if (obj.text === 'Tape') {
-				g.setColour(BORDER_COLOUR);
+				g.setColour(Colours.mix(
+						Primitives.Colors.Base['100'],
+						Primitives.Colors.Base['1000'],
+						obj.valueNormalized));
 			}
 			
 			if (obj.text === 'Tube') {
-				
 				g.setColour(Colours.mix(
 						Primitives.Colors.Orange['100'],
 						Primitives.Colors.Orange['600'],
 						obj.valueNormalized));
 			}
 			
-			
+			if (obj.text === 'Sweeten') {
+				g.setColour(Colours.mix(
+						Primitives.Colors.Green['100'],
+						Primitives.Colors.Purple['600'],
+						obj.valueNormalized));
+			}
+			if (!obj.enabled) {
+				g.setColour(Theme.THEME.Colors.Knob.knob_base_disabled);
+			}
 			
 			g.fillEllipse(sockelA);
 			
@@ -453,6 +476,28 @@ namespace Styles {
 		local pathArea = arcPath.getBounds(stableSize);
 		pathArea = [pathArea[0], pathArea[1], pathArea[2], pathArea[3]];
 		g.drawPath(arcPath, pathArea, stableSize * arcThickness );
+	}
+	
+	// BYPASS BUTTON
+	const var LAF_BypasButton = Content.createLocalLookAndFeel();
+	
+	LAF_BypasButton.registerFunction('drawToggleButton', BypasButton_LAF);
+	
+	inline function BypasButton_LAF(g, obj) {
+		
+		local a = obj.area;
+		a = StyleHelpers.addPadding(a, 7);
+		
+		local pa = StyleHelpers.addPadding(a, 3);
+		
+		g.setColour(Theme.THEME.Colors.UI.on_background_text_disabled);
+		g.drawEllipse(pa, 2);
+		
+		if (obj.value) {
+			g.setColour(Theme.THEME.Colors.UI.on_background);
+			g.fillEllipse(pa);
+		}
+		
 	}
 
 }

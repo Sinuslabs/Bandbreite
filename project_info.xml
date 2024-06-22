@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ProjectSettings>
-  <Name value="Breitband"/>
-  <Version value="1.0.0"/>
+  <Name value="Bandbreite"/>
+  <Version value="1.0.1"/>
   <Description value=""/>
-  <BundleIdentifier value="com.sinuslabs.breitband"/>
-  <PluginCode value="Brei"/>
+  <BundleIdentifier value="com.sinuslabs.bandbreite"/>
+  <PluginCode value="Band"/>
   <EmbedAudioFiles value="1"/>
   <EmbedImageFiles value="Yes"/>
   <SupportFullDynamicsHLAC value="No"/>

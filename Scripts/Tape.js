@@ -4,7 +4,7 @@ namespace Tape {
 	Content.getComponent("Tape_Low_knb"),
 	Content.getComponent("Tape_High_knb"),
 	Content.getComponent("Tape_Flutter_knb"),
-	Content.getComponent("Tape_Sweeten_knb")
+	Content.getComponent("Tape_Dust_knb")
 	];
 
 	const var Tape_Control_Container = Content.getComponent("Tape_Control_Container");
@@ -29,8 +29,8 @@ namespace Tape {
 			case 'Tape_Flutter_knb':
 				FX.BandFX.setAttribute(FX.BandFX.Flutter, value);
 				TapeAnimation.setFlutter(value);
-			case 'Tape_Sweeten_knb':
-				FX.BandFX.setAttribute(FX.BandFX.Tape_Sweeten, value);
+			case 'Tape_Dust_knb':
+				FX.BandFX.setAttribute(FX.BandFX.Tape_noise, value);
 				TapeAnimation.setSweeten(value);
 		}
 	}

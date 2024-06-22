@@ -1,9 +1,9 @@
 namespace Randomization {
 	
-	const var randomPanelButton = Content.getComponent("randomize_pnl_btn");
+	//const var randomPanelButton = Content.getComponent("randomize_pnl_btn");
 	
-	randomPanelButton.setPaintRoutine(randomPanelRoutine);
-	randomPanelButton.setMouseCallback(onRandomPanel);
+	//randomPanelButton.setPaintRoutine(randomPanelRoutine);
+	//randomPanelButton.setMouseCallback(onRandomPanel);
 	
 	inline function onRandomPanel(event) {
 		if (event.rightClick && event.result) {

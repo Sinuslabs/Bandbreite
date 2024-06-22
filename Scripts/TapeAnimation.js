@@ -20,6 +20,8 @@ namespace TapeAnimation {
 	const var AnimationPanel = Content.getComponent("TapeAnimation");
 	AnimationPanel.startTimer(timer);
 	
+	const var AnimationPanel_overlay = Content.getComponent("AnimationPanel_overlay");
+	
 	const var TapeAnimation_wrapper_pnl = Content.getComponent("TapeAnimation_wrapper_pnl");
 	TapeAnimation_wrapper_pnl.setPaintRoutine(tubeGlowRoutine);
 	
@@ -62,15 +64,15 @@ namespace TapeAnimation {
 		
 		// precise positioning to match animation
 		local left_dot_a = [
-			38.7,
-			41.2,
+			45,
+			52,
 			size,
 			size
 		];
 		
 		local right_dot_a = [
-			179.4,
-			41.4,
+			202.3,
+			52,
 			size,
 			size
 		];
@@ -113,8 +115,8 @@ namespace TapeAnimation {
 		
 		// Playhead SLAAAM!
 		local playhead_a = [
-			117.5,
-			94.5,
+			132,
+			110.5,
 			14,
 			22
 		];
@@ -141,10 +143,28 @@ namespace TapeAnimation {
 		
 		g.setColour(Theme.THEME.Colors.Effect.red);
 		if (backwards) {
-			g.drawEllipse(left_circle_a, sweeten * tape);
+		//	g.drawEllipse(left_circle_a, sweeten * tape);
 		} else {
-			g.drawEllipse(right_circle_a, sweeten * tape);
+		//	g.drawEllipse(right_circle_a, sweeten * tape);
 		}
+		
+		// TUUUBE ALARM
+		
+		local tube_circle_size = 15;
+		
+		
+		local tube_left_a = [
+			43 - tube_circle_size,
+			49.5 - tube_circle_size,
+			50 + tube_circle_size,
+			50 + tube_circle_size
+		];
+		
+		local left_tube_glow_modifier = Math.range(Math.sin(tick / 12) + 1.6, 0.6, 1);
+		local left_tube_color = Colours.withAlpha(Primitives.Colors.Orange[500], left_tube_glow_modifier);
+		
+		g.setColour(left_tube_color);
+		g.drawEllipse(tube_left_a, tube * 6);
 	}
 	
 	// ANIMATION SETUP

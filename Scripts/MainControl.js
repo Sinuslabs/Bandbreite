@@ -5,7 +5,7 @@ namespace Main_Controls {
 	
 	const var MainControls = [
 		Content.getComponent("Saturation_knb"),
-		Content.getComponent("Texture_knb"),
+		Content.getComponent("Sweeten_knb"),
 		Content.getComponent("Tape_knb")];
 
 	const var Gains = [Content.getComponent("InputGain_knb"),
@@ -105,7 +105,7 @@ namespace Main_Controls {
 		}	
 	
 		g.setFont(Theme.SemiBold, 20);
-		g.drawAlignedText('BREITBAND', a, 'centred');
+		g.drawAlignedText('BANDBREITE', a, 'centred');
 		
 		g.addNoise({
 				alpha: 0.04,
