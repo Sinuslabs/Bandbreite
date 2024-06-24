@@ -19,11 +19,13 @@ namespace Styles {
 			g.setColour(Theme.THEME.Colors.Display.on_display_disabled);
 		}
 		
-		if (obj.text === 'youtube') {
-			g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE + 20, SIZE]);
+		if (obj.text.contains('$outline')) {
+			obj.text = obj.text.replace('$outline', '');
+			g.drawPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE], 0.5);								
 		} else {
-			g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE]);					
+			g.fillPath(Assets.get[obj.text], [iconArea[0], iconArea[1], SIZE, SIZE]);
 		}
+		
 	}
 	
 	const LAF_displayIconSocialsButton = Content.createLocalLookAndFeel();

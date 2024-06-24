@@ -3,8 +3,31 @@
 <Network ID="Band" Version="0.0.0" AllowCompilation="1">
   <Node FactoryPath="container.chain" ID="Band" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="Saturation" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198"
-            Folded="1">
+      <Node ID="minmax1" FactoryPath="control.minmax" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="gain" ParameterId="Gain"/>
+        </ModulationTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1" ID="Value" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="3.0" ID="Maximum" Value="3.0"/>
+          <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                     ID="Skew" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="3.0" StepSize="0.1000000014901161" SkewFactor="5.422270774841309"
+                     ID="Gain" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                     SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="Saturation" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198">
         <Nodes>
           <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">
             <Nodes>
@@ -200,9 +223,6 @@
           <Connection NodeId="Tape2" ParameterId="Slam"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape_Bump" MinValue="0.0" MaxValue="1.0" Value="0.0">
-        <Connections/>
-      </Parameter>
       <Parameter ID="Tape_high" MinValue="0.0" MaxValue="1.0" Value="0.5012480468749999">
         <Connections>
           <Connection NodeId="IronOxide5" ParameterId="Tape High"/>
@@ -227,6 +247,11 @@
       <Parameter ID="Tape_Sweeten" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="Sweeten" ParameterId="Sweeten"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Hot" MinValue="0.0" MaxValue="1.0" StepSize="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="minmax1" ParameterId="Value"/>
         </Connections>
       </Parameter>
     </Parameters>

@@ -29,12 +29,13 @@ namespace Header {
 	
 	inline function onHot(component, value) {
 		if (value) {
-			component.set('text', 'scream');	
+			component.set('text', 'scream');
+			BandFX.setAttribute(BandFX.Hot, 3);	
 		} else {
 			component.set('text', 'worried');
+			BandFX.setAttribute(BandFX.Hot, 0);
 		}
 	
-		BandFX.setAttribute(BandFX.Hot, value);
 	}
 	
 	inline function onBypass(component, value) {
