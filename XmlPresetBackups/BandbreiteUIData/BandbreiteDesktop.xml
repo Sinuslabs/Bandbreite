@@ -193,7 +193,8 @@
                  pluginParameterName="Sweeten" isPluginParameter="1" stepSize="0.001"/>
     </Component>
     <Component type="ScriptButton" id="Bypass_btn" x="440.0" y="365.0" width="25.0"
-               height="25.0" text="playhead" parentComponent="background" enableMidiLearn="0"/>
+               height="25.0" text="playhead" parentComponent="background" enableMidiLearn="0"
+               isPluginParameter="1" pluginParameterName="Bypass"/>
     <Component type="ScriptPanel" id="ThemeSpinner_pnl" x="423.0" y="33.0" width="20.0"
                height="20.0" parentComponent="background"/>
     <Component type="ScriptButton" id="ThemeSpinner_btn" x="415.0" y="25.0"
