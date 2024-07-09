@@ -3,6 +3,8 @@ include("Core/ThemeData.js");
 include("Core/Theme.js");
 include("Helpers.js");
 
+include("UpdateChecker.js");
+
 include("Assets.js");
 include("StyleHelpers.js");
 include("Styles.js");
@@ -23,7 +25,6 @@ include("ThemeAnimation.js");
 include("Randomization.js");
 include("ConfettiAnimation.js");
 
-include("Textures.js");
 include("Tape.js");
 include("About.js");
 include("EasterEgg.js");
@@ -38,10 +39,12 @@ const var InputGain = Synth.getEffect("InputGain");
 const var BandFX = Synth.getEffect("BandFX");
 const var OutGain = Synth.getEffect("OutGain");
 
+Globals.canUpdate = false;
+Globals.OS = Engine.getOS();
+//Globals.OS = 'LINUX';
+
 inline function addVisualGuide() {
 	
-	Console.print(trace(Content.getScreenBounds(true)));
-
 	Content.addVisualGuide([WIDTH / 2, 0], Colours.yellow);
 	Content.addVisualGuide([0, 60], Colours.red);
 	Content.addVisualGuide([0, 310], Colours.red);
@@ -51,8 +54,14 @@ inline function addVisualGuide() {
 //addVisualGuide();
 
 UserSettings.load();
+if (Globals.OS === 'LINUX') {
+	Globals.canUpdate = UpdateChecker.checkUpdate(onUpdate);
+}
 
-function onNoteOn()
+inline function onUpdate(canUpdate) {
+	Header.Update_btn.showControl(canUpdate);
+	About.UpdateNow_btn.showControl(canUpdate);
+}function onNoteOn()
 {
 	
 }

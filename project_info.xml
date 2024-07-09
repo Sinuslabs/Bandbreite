@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="Bandbreite"/>
-  <Version value="1.0.1"/>
+  <Version value="1.1.0"/>
   <Description value=""/>
   <BundleIdentifier value="com.sinuslabs.bandbreite"/>
   <PluginCode value="Band"/>

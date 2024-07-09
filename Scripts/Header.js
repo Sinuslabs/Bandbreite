@@ -6,9 +6,40 @@ namespace Header {
 	const var LAF_breitband_btn = Content.createLocalLookAndFeel();
 	LAF_breitband_btn.registerFunction('drawToggleButton', breitband_btn_laf);
 	
+	const var Update_btn = Content.getComponent("Update_btn");
+	Update_btn.setControlCallback(onUpdateBtn);
+	Update_btn.setLocalLookAndFeel(Styles.LAF_displayIconButton);
+	
+	Update_btn.showControl(false);
+	
 	const var Breitband_btn = Content.getComponent("Breitband_btn");
 	Breitband_btn.setLocalLookAndFeel(LAF_breitband_btn);
 	Breitband_btn.setControlCallback(onBreitband);
+	
+	const var Oversample_pnl = Content.getComponent("Oversample_pnl");
+	const var Oversample_knb = Content.getComponent("Oversample_knb");
+	
+	Oversample_knb.setControlCallback(onOversample);
+	Oversample_pnl.setPaintRoutine(oversampleRoutine);
+	
+	Oversample_pnl.setValue({
+		oversample: 0,
+		hover: 0
+	});
+	
+	
+	Oversample_pnl.setMouseCallback(function(event) {
+	
+		var data = this.getValue();
+		var oversample;
+	
+		if (event.clicked) {
+			oversample = (data.oversample + 1) % 3;
+			Oversample_knb.setValue(oversample);
+			Oversample_knb.changed();			
+		}
+	});
+	
 
 	const var LAF_hiddenBTN = Content.createLocalLookAndFeel();
 	LAF_hiddenBTN.registerFunction('drawToggleButton', hiddenBtn_LAF);
@@ -27,6 +58,10 @@ namespace Header {
 	Hot_btn.setLocalLookAndFeel(Styles.LAF_displayIconButton);
 	Hot_btn.setControlCallback(onHot);
 	
+	inline function onUpdateBtn(component, value) {
+		Router.goTo('About');
+	}
+	
 	inline function onHot(component, value) {
 		if (value) {
 			component.set('text', 'scream');
@@ -35,7 +70,19 @@ namespace Header {
 			component.set('text', 'worried');
 			BandFX.setAttribute(BandFX.Hot, 0);
 		}
+	}
 	
+	inline function onOversample(component, value) {
+		
+		BandFX.setAttribute(BandFX.oversample, value);
+		
+		local newData = {
+			hover: event.hover,
+			oversample: value
+		};
+		
+		Oversample_pnl.setValue(newData);
+		Oversample_pnl.repaint();		
 	}
 	
 	inline function onBypass(component, value) {
@@ -126,10 +173,19 @@ namespace Header {
 	inline function hiddenBtn_LAF(g, obj) {
 		local a = obj.area;
 		a = StyleHelpers.addPadding(a, 1);
-		if (obj.over || Router.currentRoute === 'About') {
-			g.setColour(Colours.withAlpha(Colours.black, 0.2));
+		g.setColour(Colours.withAlpha(Colours.black, 0.2));
+		
+		if (Router.currentRoute === 'About') {
+			if (obj.text === 'Product_Logo_btn') {
+				return;
+			}
+		}
+	
+		if (!obj.over) {
 			g.fillRoundedRectangle(a, Primitives.BorderRadius.sm);
 		}
+		
+
 	}
 	
 	inline function breitband_btn_laf(g, obj) {
@@ -165,4 +221,38 @@ namespace Header {
 				area: a
 			});		
 	}
+	
+	inline function oversampleRoutine(g, obj) {
+		
+		local a = this.getLocalBounds(0);
+		local data = this.getValue();
+		local oversample = data.oversample;
+		local text = '1X';
+		
+		if (obj.value || data.hover) {
+			g.setColour(Theme.THEME.Colors.Display.on_display);			
+		} else {
+			g.setColour(Theme.THEME.Colors.Display.on_display_var);
+		}
+		
+		g.setFont(Theme.Regular, 22);
+		
+		switch(oversample) {
+			case 0: 
+				text = '1X';
+				break;
+			case 1: 
+				text = '2X';
+				break;
+			case 2: 
+				text = '4X';
+				break;
+		}
+		
+		g.drawAlignedText(text, a, 'centred');
+		
+	}
+	
+	
+	
 }

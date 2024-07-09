@@ -46,8 +46,8 @@ namespace Main_Controls {
 				FX.BandFX.setAttribute(FX.BandFX.Tape, value);
 				TapeAnimation.setGlow(value);
 				break;
-			case 'Texture_knb':
-				FX.BandFX.setAttribute(FX.BandFX.Textures, value);
+			case 'Sweeten_knb':
+				FX.BandFX.setAttribute(FX.BandFX.Tape_Sweeten, value);
 				break;
 
 		}
