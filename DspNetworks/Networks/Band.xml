@@ -29,7 +29,7 @@
           <Node ID="TapeSmootherSlam" FactoryPath="control.smoothed_parameter"
                 Bypassed="0" NodeColour="16754432">
             <Properties>
-              <Property ID="Mode" Value="Low Pass"/>
+              <Property ID="Mode" Value="Linear Ramp"/>
             </Properties>
             <ModulationTargets>
               <Connection NodeId="Tape2" ParameterId="Slam"/>
@@ -121,7 +121,8 @@
         <Nodes>
           <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
             <Nodes>
-              <Node ID="Saturation2" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198">
+              <Node ID="Saturation2" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198"
+                    Folded="1">
                 <Nodes>
                   <Node ID="Tube6" FactoryPath="project.Tube2" Bypassed="0">
                     <Parameters>
@@ -240,7 +241,8 @@
           <Node ID="oversample2x" FactoryPath="container.oversample2x" Bypassed="0"
                 ShowParameters="0">
             <Nodes>
-              <Node ID="Saturation" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198">
+              <Node ID="Saturation" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198"
+                    Folded="1">
                 <Nodes>
                   <Node ID="Tube2" FactoryPath="project.Tube2" Bypassed="0">
                     <Parameters>
@@ -357,7 +359,8 @@
           </Node>
           <Node ID="oversample4x" FactoryPath="container.oversample4x" Bypassed="0">
             <Nodes>
-              <Node ID="Saturation1" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198">
+              <Node ID="Saturation1" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198"
+                    Folded="1">
                 <Nodes>
                   <Node ID="Tube4" FactoryPath="project.Tube2" Bypassed="0">
                     <Parameters>
@@ -518,7 +521,7 @@
           <Connection NodeId="Flutter1" ParameterId="Flutter"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Tape_noise" MinValue="0.0" MaxValue="1.0" Value="0.9967337036132813">
+      <Parameter ID="Tape_noise" MinValue="0.0" MaxValue="1.0" Value="0.9048299560546875">
         <Connections>
           <Connection NodeId="IronOxide5" ParameterId="Noise"/>
           <Connection NodeId="IronOxide7" ParameterId="Noise"/>
@@ -532,7 +535,7 @@
           <Connection NodeId="Sweeten1" ParameterId="Sweeten"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Hot" MinValue="0.0" MaxValue="1.0" StepSize="1.0" Value="1.0">
+      <Parameter ID="Hot" MinValue="0.0" MaxValue="1.0" StepSize="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="minmax1" ParameterId="Value"/>
         </Connections>

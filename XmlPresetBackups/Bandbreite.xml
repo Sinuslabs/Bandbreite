@@ -9,14 +9,14 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="Tape_Slam_knb" value="0.2300000041723251"/>
+            <Control type="ScriptSlider" id="Tape_Slam_knb" value="0.300000011920929"/>
             <Control type="ScriptSlider" id="Tape_Low_knb" value="1.040834085586084e-17"/>
-            <Control type="ScriptSlider" id="Tape_High_knb" value="1.040834085586084e-17"/>
+            <Control type="ScriptSlider" id="Tape_High_knb" value="0.1500000059604645"/>
             <Control type="ScriptSlider" id="Tape_Flutter_knb" value="0.2000000029802322"/>
-            <Control type="ScriptSlider" id="Tape_Dust_knb" value="0.1000000014901161"/>
+            <Control type="ScriptSlider" id="Tape_Dust_knb" value="0.1500000059604645"/>
             <Control type="ScriptButton" id="discount_copy_btn" value="0.0"/>
             <Control type="ScriptButton" id="discount_close_btn" value="0.0"/>
-            <Control type="ScriptSlider" id="Oversample_knb" value="0.0"/>
+            <Control type="ScriptSlider" id="Oversample_knb" value="0"/>
             <Control type="ScriptButton" id="Hot_btn" value="0.0"/>
             <Control type="ScriptSlider" id="InputGain_knb" value="8.940696716308594e-7"/>
             <Control type="ScriptSlider" id="OutputGain_knb" value="8.940696716308594e-7"/>
@@ -56,8 +56,8 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="Hardcoded Master FX" ID="BandFX" Bypassed="0" Network="Band"
-                   Tube="0.25" Tape="0.75" Tape_Slam="0.2300000041723251" Tape_high="0.5"
-                   Tape_low="0.5" Flutter="0.2000000029802322" Tape_noise="0.1000000014901161"
+                   Tube="0.25" Tape="0.75" Tape_Slam="0.300000011920929" Tape_high="0.6499999761581421"
+                   Tape_low="0.5" Flutter="0.2000000029802322" Tape_noise="0.1500000059604645"
                    Tape_Sweeten="0.25" Hot="0.0" oversample="0.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
@@ -79,17 +79,6 @@
             </Processor>
           </ChildProcessors>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
-        </Processor>
-        <Processor Type="ScriptFX" ID="Script FX1" Bypassed="0">
-          <ChildProcessors/>
-          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
-          <Content/>
-          <Networks>
-            <Network ID="Band" Version="0.0.0" AllowCompilation="1"/>
-          </Networks>
-          <UIData>
-            <ContentProperties DeviceType="Desktop"/>
-          </UIData>
         </Processor>
       </ChildProcessors>
     </Processor>

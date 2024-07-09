@@ -71,7 +71,7 @@ using TapeSmootherSlam_mod = parameter::chain<ranges::Identity,
 
 template <int NV>
 using TapeSmootherSlam_t = wrap::mod<TapeSmootherSlam_mod<NV>, 
-                                     control::smoothed_parameter<NV, smoothers::low_pass<NV>>>;
+                                     control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>>;
 
 template <int NV>
 using split1_t = container::split<parameter::empty, 
@@ -278,6 +278,7 @@ using Tape_noise = parameter::chain<ranges::Identity,
 template <int NV>
 using Tape_Sweeten = parameter::chain<ranges::Identity, 
                                       parameter::plain<project::Sweeten<NV>, 0>, 
+                                      parameter::plain<project::Sweeten<NV>, 0>, 
                                       parameter::plain<project::Sweeten<NV>, 0>>;
 
 template <int NV>
@@ -347,12 +348,12 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
             0x0000, 0x0000, 0x055B, 0x0000, 0x4600, 0x756C, 0x7474, 0x7265, 
             0x0000, 0x0000, 0x0000, 0x8000, 0x833F, 0x09F6, 0x003E, 0x8000, 
             0x003F, 0x0000, 0x5B00, 0x0006, 0x0000, 0x6154, 0x6570, 0x6E5F, 
-            0x696F, 0x6573, 0x0000, 0x0000, 0x0000, 0x8000, 0xF13F, 0x7F29, 
+            0x696F, 0x6573, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x8000, 0x003F, 0x0000, 0x5B00, 0x0007, 0x0000, 0x6154, 
             0x6570, 0x535F, 0x6577, 0x7465, 0x6E65, 0x0000, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5B00, 
             0x0008, 0x0000, 0x6F48, 0x0074, 0x0000, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x095B, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x095B, 0x0000, 
             0x6F00, 0x6576, 0x7372, 0x6D61, 0x6C70, 0x0065, 0x0000, 0x0000, 
             0x0000, 0x4000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x0000, 0x0000
@@ -457,6 +458,7 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
 		auto& Tape_Sweeten_p = this->getParameterT(7);
 		Tape_Sweeten_p.connectT(0, Sweeten);  // Tape_Sweeten -> Sweeten::Sweeten
 		Tape_Sweeten_p.connectT(1, Sweeten2); // Tape_Sweeten -> Sweeten2::Sweeten
+		Tape_Sweeten_p.connectT(2, Sweeten1); // Tape_Sweeten -> Sweeten1::Sweeten
 		
 		this->getParameterT(8).connectT(0, minmax1); // Hot -> minmax1::Value
 		
@@ -625,7 +627,7 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
 		wet_gain3.setParameterT(1, 20.); // core::gain::Smoothing
 		wet_gain3.setParameterT(2, 0.);  // core::gain::ResetValue
 		
-		Sweeten1.setParameterT(0, 0.); // project::Sweeten::Sweeten
+		; // Sweeten1::Sweeten is automated
 		
 		this->setParameterT(0, 0.446597);
 		this->setParameterT(1, 0.710111);
@@ -633,9 +635,9 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
 		this->setParameterT(3, 0.501248);
 		this->setParameterT(4, 0.806842);
 		this->setParameterT(5, 0.134729);
-		this->setParameterT(6, 0.996734);
+		this->setParameterT(6, 1.);
 		this->setParameterT(7, 0.);
-		this->setParameterT(8, 1.);
+		this->setParameterT(8, 0.);
 		this->setParameterT(9, 0.);
 	}
 	
