@@ -16,7 +16,7 @@
             <Control type="ScriptSlider" id="Tape_Dust_knb" value="0.1500000059604645"/>
             <Control type="ScriptButton" id="discount_copy_btn" value="0.0"/>
             <Control type="ScriptButton" id="discount_close_btn" value="0.0"/>
-            <Control type="ScriptSlider" id="Oversample_knb" value="0"/>
+            <Control type="ScriptSlider" id="Oversample_knb" value="0.0"/>
             <Control type="ScriptButton" id="Hot_btn" value="0.0"/>
             <Control type="ScriptSlider" id="InputGain_knb" value="8.940696716308594e-7"/>
             <Control type="ScriptSlider" id="OutputGain_knb" value="8.940696716308594e-7"/>

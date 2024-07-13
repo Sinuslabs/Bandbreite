@@ -3,45 +3,50 @@
 <Network ID="Band" Version="0.0.0" AllowCompilation="1">
   <Node FactoryPath="container.chain" ID="Band" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="split1" FactoryPath="container.split" Bypassed="0" Folded="1">
+      <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0">
         <Nodes>
-          <Node ID="Tube smoother" FactoryPath="control.smoothed_parameter" Bypassed="0"
-                NodeColour="16754432">
-            <Properties>
-              <Property ID="Mode" Value="Linear Ramp"/>
-            </Properties>
-            <ModulationTargets>
-              <Connection NodeId="Tube2" ParameterId="Tube"/>
-              <Connection NodeId="Tube3" ParameterId="Tube"/>
-              <Connection NodeId="Tube6" ParameterId="Tube"/>
-              <Connection NodeId="Tube7" ParameterId="Tube"/>
-              <Connection NodeId="tube input minmax" ParameterId="Value"/>
-              <Connection NodeId="Tube4" ParameterId="Tube"/>
-              <Connection NodeId="Tube5" ParameterId="Tube"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
-                         ID="SmoothingTime" Value="100.0000014901161"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-            </Parameters>
-          </Node>
-          <Node ID="TapeSmootherSlam" FactoryPath="control.smoothed_parameter"
-                Bypassed="0" NodeColour="16754432">
-            <Properties>
-              <Property ID="Mode" Value="Linear Ramp"/>
-            </Properties>
-            <ModulationTargets>
-              <Connection NodeId="Tape2" ParameterId="Slam"/>
-              <Connection NodeId="Tape4" ParameterId="Slam"/>
-              <Connection NodeId="Tape3" ParameterId="Slam"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
-                         ID="SmoothingTime" Value="100.0000014901161"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-            </Parameters>
+          <Node ID="split1" FactoryPath="container.split" Bypassed="0">
+            <Nodes>
+              <Node ID="Tube smoother" FactoryPath="control.smoothed_parameter" Bypassed="0"
+                    NodeColour="16754432">
+                <Properties>
+                  <Property ID="Mode" Value="Linear Ramp"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="Tube2" ParameterId="Tube"/>
+                  <Connection NodeId="Tube3" ParameterId="Tube"/>
+                  <Connection NodeId="Tube6" ParameterId="Tube"/>
+                  <Connection NodeId="Tube7" ParameterId="Tube"/>
+                  <Connection NodeId="tube input minmax" ParameterId="Value"/>
+                  <Connection NodeId="Tube4" ParameterId="Tube"/>
+                  <Connection NodeId="Tube5" ParameterId="Tube"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="SmoothingTime" Value="100.0000014901161"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="TapeSmootherSlam" FactoryPath="control.smoothed_parameter"
+                    Bypassed="0" NodeColour="16754432">
+                <Properties>
+                  <Property ID="Mode" Value="Linear Ramp"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="Tape2" ParameterId="Slam"/>
+                  <Connection NodeId="Tape4" ParameterId="Slam"/>
+                  <Connection NodeId="Tape3" ParameterId="Slam"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="SmoothingTime" Value="100.0000014901161"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
           </Node>
         </Nodes>
         <Parameters/>
@@ -85,10 +90,10 @@
                 </ModulationTargets>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.4976141357421875"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Maximum" Value="0.858763427734375"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.5"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Maximum" Value="0.85"/>
                   <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
-                             ID="Skew" Value="0.2978374770209779"/>
+                             ID="Skew" Value="0.2105573582263619"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.0"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
                 </Parameters>
@@ -121,8 +126,7 @@
         <Nodes>
           <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
             <Nodes>
-              <Node ID="Saturation2" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198"
-                    Folded="1">
+              <Node ID="Saturation2" FactoryPath="container.chain" Bypassed="0" NodeColour="4292434198">
                 <Nodes>
                   <Node ID="Tube6" FactoryPath="project.Tube2" Bypassed="0">
                     <Parameters>
@@ -482,7 +486,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Tube" MinValue="0.0" MaxValue="1.0" Value="0.4465967407226563">
+      <Parameter ID="Tube" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="Tube smoother" ParameterId="Value"/>
         </Connections>

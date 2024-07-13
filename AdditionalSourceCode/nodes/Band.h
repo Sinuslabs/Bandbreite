@@ -75,8 +75,15 @@ using TapeSmootherSlam_t = wrap::mod<TapeSmootherSlam_mod<NV>,
 
 template <int NV>
 using split1_t = container::split<parameter::empty, 
-                                  wrap::fix<2, Tubesmoother_t<NV>>, 
+                                  wrap::fix<1, Tubesmoother_t<NV>>, 
                                   TapeSmootherSlam_t<NV>>;
+
+template <int NV>
+using modchain2_t_ = container::chain<parameter::empty, 
+                                      wrap::fix<1, split1_t<NV>>>;
+
+template <int NV>
+using modchain2_t = wrap::control_rate<modchain2_t_<NV>>;
 
 template <int NV>
 using minmax1_t = control::minmax<NV, 
@@ -311,7 +318,7 @@ using Band_t_plist = parameter::list<Tube<NV>,
 
 template <int NV>
 using Band_t_ = container::chain<Band_t_parameters::Band_t_plist<NV>, 
-                                 wrap::fix<2, split1_t<NV>>, 
+                                 wrap::fix<2, modchain2_t<NV>>, 
                                  minmax1_t<NV>, 
                                  core::gain<NV>, 
                                  modchain_t<NV>, 
@@ -336,7 +343,7 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
 		SNEX_METADATA_ENCODED_PARAMETERS(170)
 		{
 			0x005B, 0x0000, 0x5400, 0x6275, 0x0065, 0x0000, 0x0000, 0x0000, 
-            0x3F80, 0xA854, 0x3EE4, 0x0000, 0x3F80, 0x0000, 0x0000, 0x015B, 
+            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x015B, 
             0x0000, 0x5400, 0x7061, 0x0065, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0xC9D1, 0x3F35, 0x0000, 0x3F80, 0x0000, 0x0000, 0x025B, 0x0000, 
             0x5400, 0x7061, 0x5F65, 0x6C53, 0x6D61, 0x0000, 0x0000, 0x0000, 
@@ -348,7 +355,7 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
             0x0000, 0x0000, 0x055B, 0x0000, 0x4600, 0x756C, 0x7474, 0x7265, 
             0x0000, 0x0000, 0x0000, 0x8000, 0x833F, 0x09F6, 0x003E, 0x8000, 
             0x003F, 0x0000, 0x5B00, 0x0006, 0x0000, 0x6154, 0x6570, 0x6E5F, 
-            0x696F, 0x6573, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 
+            0x696F, 0x6573, 0x0000, 0x0000, 0x0000, 0x8000, 0xF03F, 0x67A2, 
             0x003F, 0x8000, 0x003F, 0x0000, 0x5B00, 0x0007, 0x0000, 0x6154, 
             0x6570, 0x535F, 0x6577, 0x7465, 0x6E65, 0x0000, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5B00, 
@@ -364,9 +371,10 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
 	{
 		// Node References -------------------------------------------------------------------------
 		
-		auto& split1 = this->getT(0);                                         // Band_impl::split1_t<NV>
-		auto& Tubesmoother = this->getT(0).getT(0);                           // Band_impl::Tubesmoother_t<NV>
-		auto& TapeSmootherSlam = this->getT(0).getT(1);                       // Band_impl::TapeSmootherSlam_t<NV>
+		auto& modchain2 = this->getT(0);                                      // Band_impl::modchain2_t<NV>
+		auto& split1 = this->getT(0).getT(0);                                 // Band_impl::split1_t<NV>
+		auto& Tubesmoother = this->getT(0).getT(0).getT(0);                   // Band_impl::Tubesmoother_t<NV>
+		auto& TapeSmootherSlam = this->getT(0).getT(0).getT(1);               // Band_impl::TapeSmootherSlam_t<NV>
 		auto& minmax1 = this->getT(1);                                        // Band_impl::minmax1_t<NV>
 		auto& gain = this->getT(2);                                           // core::gain<NV>
 		auto& modchain = this->getT(3);                                       // Band_impl::modchain_t<NV>
@@ -518,9 +526,9 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
 		gain.setParameterT(2, 0.);  // core::gain::ResetValue
 		
 		;                                           // tubeinputminmax::Value is automated
-		tubeinputminmax.setParameterT(1, 0.497614); // control::minmax::Minimum
-		tubeinputminmax.setParameterT(2, 0.858763); // control::minmax::Maximum
-		tubeinputminmax.setParameterT(3, 0.297837); // control::minmax::Skew
+		tubeinputminmax.setParameterT(1, 0.5);      // control::minmax::Minimum
+		tubeinputminmax.setParameterT(2, 0.85);     // control::minmax::Maximum
+		tubeinputminmax.setParameterT(3, 0.210557); // control::minmax::Skew
 		tubeinputminmax.setParameterT(4, 0.);       // control::minmax::Step
 		tubeinputminmax.setParameterT(5, 0.);       // control::minmax::Polarity
 		
@@ -629,13 +637,13 @@ template <int NV> struct instance: public Band_impl::Band_t_<NV>
 		
 		; // Sweeten1::Sweeten is automated
 		
-		this->setParameterT(0, 0.446597);
+		this->setParameterT(0, 0.);
 		this->setParameterT(1, 0.710111);
 		this->setParameterT(2, 0.365859);
 		this->setParameterT(3, 0.501248);
 		this->setParameterT(4, 0.806842);
 		this->setParameterT(5, 0.134729);
-		this->setParameterT(6, 1.);
+		this->setParameterT(6, 0.90483);
 		this->setParameterT(7, 0.);
 		this->setParameterT(8, 0.);
 		this->setParameterT(9, 0.);
